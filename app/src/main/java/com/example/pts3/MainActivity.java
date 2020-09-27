@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +16,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     Button bt;
@@ -35,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("BT INFO", "button click");
                 bt.setBackgroundColor(Color.parseColor("#8F8FF8"));
 
-
-                test();
-
+                new displayImage().execute();
 
             }
         });
@@ -46,17 +48,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public  void  test(){
-        ConnectorImage coImage = null;
-        try {
-            coImage = new ConnectorImage();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private class displayImage extends AsyncTask<Void, Void, Void> {
+        Drawable d;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Photo picture = null;
+            try {
+                picture = new Photo("i190950");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            d = picture.getPicture();
+            return null;
         }
-        Bitmap bitTest = BitmapFactory.decodeFile("C:\\Users\\Megaport\\Desktop\\image_steam.PNG");
-        Drawable d = new BitmapDrawable(getResources(),bitTest);
-        imageview.setImageDrawable(d);
-        //  imageview.postInvalidate();
-
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            imageview.setImageDrawable(d);
+        }
     }
+
+
+
+
+
 }
