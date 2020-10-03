@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">PremierePage</string>
+    <string name="title_home">Etudiants</string>
+    <string name="title_dashboard">Groupes</string>
+    <string name="title_notifications">Quizz</string>
+
+    <string-array name="prenom">
+        <item>Thomas</item>
+        <item>Thibeault</item>
+        <item>Enzo</item>
+        <item>Romain</item>
+        <item>Florian</item>
+        <item>Maxime</item>
+        <item>Théophile</item>
+        <item>Hugo</item>
+    </string-array>
+
+    <string-array name="nom">
+        <item>PAMANTUNG</item>
+        <item>DEROUIN</item>
+        <item>LEVILLAIN</item>
+        <item>MOLLÉ</item>
+        <item>DAUNAY</item>
+        <item>FROMONT</item>
+        <item>GIRARD</item>
+        <item>TRINQUANT</item>
+    </string-array>
+
+    <string-array name="classe">
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+        <item>info1</item>
+    </string-array>
+
+    <string-array name="groupe">
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+        <item>TDX</item>
+    </string-array>
+
+</resources>
