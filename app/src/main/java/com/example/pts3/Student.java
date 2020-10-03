@@ -1,5 +1,7 @@
 package com.example.pts3;
 
+import java.io.IOException;
+
 public class Student {
 
     private GroupTP groupTP;
@@ -12,6 +14,8 @@ public class Student {
     private String bac;
     private String originSchool;
 
+    private Photo photo;
+
     public Student(GroupTP groupTP, String lastName, String firstName,
                    String number, String birthDate, String bac, String originSchool){
 
@@ -22,6 +26,11 @@ public class Student {
         this.birthDate = birthDate;
         this.bac = bac;
         this.originSchool = originSchool;
+        try {
+            this.photo = new Photo(number.substring(2));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public GroupTP getGroupTP() {
@@ -50,5 +59,9 @@ public class Student {
 
     public String getOriginSchool() {
         return originSchool;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 }
