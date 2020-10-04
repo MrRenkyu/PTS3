@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -15,14 +16,18 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     StudentManager studentManager;
+    boolean queryEnded = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new InitializeJson().execute();
+        while (queryEnded) {
+
+        }
+        Log.e("MainActivity", studentManager.getAllPromos().size() + "promo");
+
 
         TabLayout tabLayout = findViewById(R.id.tabBar);
         TabItem tabEtudiant = findViewById(R.id.tabEtudiant);
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(pagerAdapter);
 
-        new InitializeJson().execute();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -59,14 +63,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public class InitializeJson extends AsyncTask<Void, Void, Void> {
-
+    class InitializeJson extends AsyncTask<String, Void, Boolean> {
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Boolean doInBackground(String... urls) {
+            Log.e("intialize task", "task is call");
             studentManager = new StudentManager();
-            return null;
+            Log.e("initializeJson", "student manager is end to initialize");
+
+            Log.e("initializeJson", "all file are get from HTTP");
+            GroupesFragment.setStudentManager(studentManager);
+            queryEnded = false;
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+
         }
     }
+
 }

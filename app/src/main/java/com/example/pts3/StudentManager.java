@@ -1,5 +1,7 @@
 package com.example.pts3;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,11 +14,13 @@ public class StudentManager {
 
     private static final String URL_JSON = "http://perso.univ-lemans.fr/~plafor/gestionabs/studentData.json";
 
+
     public ArrayList<Promo> promoList = new ArrayList<Promo>();
 
     public StudentManager(){
         try {
             byte[] byteStudents = Network.getUrlBytes(URL_JSON);
+            Log.e("StudentManager", "JSON Byte were download");
             JSONArray jsonarray =new JSONArray(new String(byteStudents));
 
             for(int i=0; i < jsonarray.length(); i++) {
@@ -55,6 +59,8 @@ public class StudentManager {
                 promo.setGroupTDList(groupTDList);
                 promoList.add(promo);
             }
+
+            Log.e("studentManager",promoList.size()+"promo initialize");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -100,5 +106,10 @@ public class StudentManager {
             }
         }
         return studentsList;
+    }
+
+
+    public ArrayList<Promo> getAllPromos(){
+        return promoList;
     }
 }

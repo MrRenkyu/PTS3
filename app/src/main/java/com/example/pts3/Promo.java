@@ -23,4 +23,12 @@ public class Promo {
         return GroupsTD;
     }
 
+    public int getNumberStudent(){
+        int sommeNum = 0;
+        for( GroupTD grTd : GroupsTD){
+            sommeNum = sommeNum+ grTd.getNumberStudent();
+        }
+        return sommeNum;
+    }
+
 }

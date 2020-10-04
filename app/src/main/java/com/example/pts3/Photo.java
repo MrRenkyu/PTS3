@@ -28,7 +28,7 @@ public class Photo {
      * @throws IOException
      */
     private void getPictureFromHttp() throws IOException {
-        String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-"+getNumStudent()+".jpg";
+        String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-i"+getNumStudent()+".jpg";
         URL url = new URL(urlAddress);
         URLConnection connector = url.openConnection();
         connector.connect();

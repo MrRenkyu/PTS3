@@ -28,4 +28,12 @@ public class GroupTD {
     public ArrayList<GroupTP> getGroupsTP() {
         return GroupsTP;
     }
+
+    public int getNumberStudent(){
+        int sommeNum = 0;
+        for( GroupTP grTp : GroupsTP){
+            sommeNum = sommeNum+ grTp.getNumberStudent();
+        }
+        return sommeNum;
+    }
 }

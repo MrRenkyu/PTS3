@@ -28,4 +28,8 @@ public class GroupTP {
     public ArrayList<Student> getStudents() {
         return students;
     }
+
+    public int getNumberStudent(){
+        return students.size();
+    }
 }

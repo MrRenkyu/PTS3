@@ -31,6 +31,8 @@ public class GroupesFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static StudentManager studentManagerFromMainActivity;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -85,9 +87,19 @@ public class GroupesFragment extends Fragment {
         });
 
         final ArrayList<BlockGroup> blockGroupsList = new ArrayList<BlockGroup>();
-        blockGroupsList.add(new BlockGroup(0,"INFO1",40));
-        blockGroupsList.add(new BlockGroup(1,"TD11",20));
-        blockGroupsList.add(new BlockGroup(2,"TPGA",10));
+
+        ArrayList<Promo> allPromos = studentManagerFromMainActivity.getAllPromos();
+        Log.e("size of promo list", allPromos.size()+" promo");
+        for (Promo eachPromo : allPromos){
+            blockGroupsList.add(new BlockGroup(1, eachPromo.getName(), eachPromo.getNumberStudent()));
+            for( GroupTD eachGrTd : eachPromo.getGroupsTD()){
+                blockGroupsList.add(new BlockGroup(2, eachGrTd.getName(), eachGrTd.getNumberStudent()));
+                for (GroupTP eachGrTp : eachGrTd.getGroupsTP()){
+                    blockGroupsList.add(new BlockGroup(3, eachGrTp.getName(), eachGrTp.getNumberStudent()));
+                    Log.e(eachGrTp.getName(), String.valueOf(eachGrTp.getNumberStudent()) );
+                }
+            }
+        }
 
 
         mRecyclerView = rootView.findViewById(R.id.rvBlockGroup);
@@ -123,5 +135,11 @@ public class GroupesFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+
+
+    public static void setStudentManager(StudentManager studentManager){
+        studentManagerFromMainActivity = studentManager;
     }
 }
