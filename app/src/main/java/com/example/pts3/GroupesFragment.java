@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,11 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class GroupesFragment extends Fragment {
+
+    private SearchView searchView;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,26 +73,55 @@ public class GroupesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("On create view","On create pfff fragment initialise");
-        ArrayList<BlockGroup> blockGroupsList = new ArrayList<BlockGroup>();
+
+        View rootView = inflater.inflate(R.layout.fragment_groupes, container, false);
+        searchView = rootView.findViewById(R.id.searchView);
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.onActionViewExpanded();
+            }
+        });
+
+        final ArrayList<BlockGroup> blockGroupsList = new ArrayList<BlockGroup>();
         blockGroupsList.add(new BlockGroup(0,"INFO1",40));
         blockGroupsList.add(new BlockGroup(1,"TD11",20));
         blockGroupsList.add(new BlockGroup(2,"TPGA",10));
 
-        View view = inflater.inflate(R.layout.fragment_groupes, container, false);
 
-        RecyclerView rvGroup = (RecyclerView) view.findViewById(R.id.rvBlockGroup);
+        mRecyclerView = rootView.findViewById(R.id.rvBlockGroup);
+        mAdapter = new BlockGroupAdapter(blockGroupsList);
 
-        // Create adapter passing in the sample user data
-        BlockGroupAdapter adapter = new BlockGroupAdapter(blockGroupsList);
-        // Attach the adapter to the recyclerview to populate items
-        rvGroup.setAdapter(adapter);
-        // Set layout manager to position the items
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rvGroup.setLayoutManager(linearLayoutManager);
-        // That's all!
+        mLayoutManager = new LinearLayoutManager(getContext());
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groupes, container, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<BlockGroup> tempList = new ArrayList<>();
+                for (int i = 0; i < blockGroupsList.size();i++){
+                    if (blockGroupsList.get(i).getCategorie().contains(newText)){
+                        tempList.add(blockGroupsList.get(i));
+                    }
+                }
+                mAdapter = new BlockGroupAdapter(tempList);
+
+                mLayoutManager = new LinearLayoutManager(getContext());
+
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                mRecyclerView.setAdapter(mAdapter);
+                return false;
+            }
+        });
+
+        return rootView;
     }
 }

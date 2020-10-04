@@ -3,6 +3,9 @@ package com.example.pts3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabItem;
@@ -10,6 +13,8 @@ import com.google.android.material.tabs.TabLayout;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    StudentManager studentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.getTabCount());
 
         viewPager.setAdapter(pagerAdapter);
+
+        new InitializeJson().execute();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -48,5 +56,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+
+    public class InitializeJson extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            studentManager = new StudentManager();
+            return null;
+        }
     }
 }

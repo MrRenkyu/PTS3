@@ -54,7 +54,10 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
         textViewGroupName.setText(blockGroup.getCategorie());
 
         TextView textViewNumStudent = holder.mStudentNumber_tv;
-        textViewNumStudent.setText("("+ blockGroup.getNbEleve()+"etudiants)");
+        textViewNumStudent.setText("("+ blockGroup.getNbEleve()+" étudiants)");
+
+        int tabtextViewGroupName = blockGroup.getNbTab();
+        textViewGroupName.setX(50*tabtextViewGroupName+25);
     }
 
     @Override
