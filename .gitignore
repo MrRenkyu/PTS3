@@ -12,6 +12,10 @@
 /captures
 .externalNativeBuild
 .cxx
+<<<<<<< HEAD
+=======
+
+>>>>>>> 403ffeed388dfbff1d48081d855fd45a76c8f5b3
 # Built application files
 *.apk
 *.aar

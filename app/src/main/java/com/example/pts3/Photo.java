@@ -18,7 +18,11 @@ public class Photo {
 
     public Photo(String numStudent) throws IOException {
         this.numStudent = numStudent;
+<<<<<<< HEAD
         //getPictureFromHttp();
+=======
+        getPictureFromHttp();
+>>>>>>> 403ffeed388dfbff1d48081d855fd45a76c8f5b3
     }
 
 
@@ -28,7 +32,11 @@ public class Photo {
      * @throws IOException
      */
     private void getPictureFromHttp() throws IOException {
+<<<<<<< HEAD
         String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-i"+getNumStudent()+".jpg";
+=======
+        String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-"+getNumStudent()+".jpg";
+>>>>>>> 403ffeed388dfbff1d48081d855fd45a76c8f5b3
         URL url = new URL(urlAddress);
         URLConnection connector = url.openConnection();
         connector.connect();
