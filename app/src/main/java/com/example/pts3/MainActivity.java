@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
             Log.e("initializeJson", "all file are get from HTTP");
             GroupesFragment.setStudentManager(studentManager);
+            EtudiantsFragment.setStudentManager(studentManager);
+
             queryEnded = false;
             return false;
         }

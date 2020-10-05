@@ -20,6 +20,8 @@ public class EtudiantsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private static StudentManager studentManagerFromMainActivity;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,13 +36,11 @@ public class EtudiantsFragment extends Fragment {
             }
         });
 
-        final ArrayList<ItemPerson> listPerson = new ArrayList<>();
-        for (int i = 0; i < 50; i++){
-            listPerson.add(new ItemPerson(R.drawable.ic_launcher_foreground,"user" + i,R.drawable.ic_launcher_background));
-        }
+        final ArrayList<Student> listStudent;
+        listStudent = getStudentManager().getAllStudents();
 
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
-        mAdapter = new ItemPersonAdapter(listPerson);
+        mAdapter = new ItemPersonAdapter(listStudent);
 
         mLayoutManager = new LinearLayoutManager(getContext());
 
@@ -55,10 +55,10 @@ public class EtudiantsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<ItemPerson> tempList = new ArrayList<>();
-                for (int i = 0; i < listPerson.size();i++){
-                    if (listPerson.get(i).getNom().contains(newText)){
-                        tempList.add(listPerson.get(i));
+                ArrayList<Student> tempList = new ArrayList<>();
+                for (int i = 0; i < listStudent.size();i++){
+                    if (listStudent.get(i).getFirstName().contains(newText)){
+                        tempList.add(listStudent.get(i));
                     }
                 }
                 mAdapter = new ItemPersonAdapter(tempList);
@@ -72,5 +72,13 @@ public class EtudiantsFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public static StudentManager getStudentManager(){
+        return studentManagerFromMainActivity;
+    }
+
+    public static void setStudentManager(StudentManager studentManager){
+        studentManagerFromMainActivity = studentManager;
     }
 }

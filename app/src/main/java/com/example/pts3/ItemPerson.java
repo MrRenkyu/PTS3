@@ -4,12 +4,17 @@ import android.widget.ImageButton;
 
 public class ItemPerson {
     private int mImageResource;
-    private String mNom;
+    private String firstName;
+    private String lastName;
+    private String promo;
+    private String grTd;
+    private String grTp;
+
     private int mImageResource2;
 
     public ItemPerson(int imageResource, String nom, int imageResource2){
         mImageResource = imageResource;
-        mNom = nom;
+        firstName = nom;
         mImageResource2 = imageResource2;
 
     }
@@ -19,7 +24,7 @@ public class ItemPerson {
     }
 
     public void changeName(String name){
-        mNom = name;
+        firstName = name;
     }
 
     public  int getImageResource(){
@@ -27,7 +32,7 @@ public class ItemPerson {
     }
 
     public String getNom(){
-        return mNom;
+        return firstName;
     }
 
     public  int getImageResource2(){

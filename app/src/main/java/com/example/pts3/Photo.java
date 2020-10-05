@@ -18,7 +18,7 @@ public class Photo {
 
     public Photo(String numStudent) throws IOException {
         this.numStudent = numStudent;
-        getPictureFromHttp();
+        //getPictureFromHttp();
     }
 
 

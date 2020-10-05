@@ -112,4 +112,17 @@ public class StudentManager {
     public ArrayList<Promo> getAllPromos(){
         return promoList;
     }
+
+    public ArrayList<Student> getAllStudents(){
+        ArrayList<Student> allStudents = new ArrayList<>();
+        for(Promo eachPromo : promoList){
+            for(GroupTD grTd: eachPromo.getGroupsTD()){
+                for(GroupTP grTp: grTd.getGroupsTP()){
+                    allStudents.addAll(grTp.getStudents());
+                }
+            }
+        }
+
+        return allStudents;
+    }
 }

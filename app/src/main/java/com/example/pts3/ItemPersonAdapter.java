@@ -3,18 +3,16 @@ package com.example.pts3;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.ItemPersonViewHolder> {
-    private ArrayList<ItemPerson> mItemPersonList;
+    private ArrayList<Student> mItemPersonList;
     public OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -28,13 +26,21 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
     public static class ItemPersonViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
-        public TextView mText;
+        public TextView firstName_tv;
         public ImageView mImageView2;
+        public TextView lastName_tv;
+        public TextView promo_tv;
+        public TextView grTd_tv;
+        public TextView grTp_tv;
 
         public ItemPersonViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imagePerson);
-            mText = itemView.findViewById(R.id.nomInvit);
+            firstName_tv = itemView.findViewById(R.id.firstName_tv);
+            lastName_tv = itemView.findViewById(R.id.lastName_tv);
+            promo_tv = itemView.findViewById(R.id.promo_tv);
+            grTd_tv = itemView.findViewById(R.id.grTd_tv);
+            grTp_tv = itemView.findViewById(R.id.grTp_tv);
             mImageView2 = itemView.findViewById(R.id.imageView19);
 
             mImageView2.setOnClickListener(new View.OnClickListener() {
@@ -58,15 +64,15 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         ItemPersonViewHolder ipvh = new ItemPersonViewHolder(v, mListener);
         return ipvh;
     }
-    public ItemPersonAdapter(ArrayList<ItemPerson> itemlist){
+    public ItemPersonAdapter(ArrayList<Student> itemlist){
         mItemPersonList = itemlist;
     }
     @Override
     public void onBindViewHolder(@NonNull ItemPersonViewHolder holder, int position) {
-        ItemPerson currentItem = mItemPersonList.get(position);
+        Student currentItem = mItemPersonList.get(position);
 
-        holder.mImageView.setImageResource(currentItem.getImageResource());
-        holder.mText.setText((currentItem.getNom()));
+        //holder.mImageView.setImageDrawable(currentItem.getPhoto().getPicture());
+        holder.firstName_tv.setText((currentItem.getFirstName()));
     }
 
     @Override
