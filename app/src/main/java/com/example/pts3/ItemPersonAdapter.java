@@ -71,7 +71,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     public void onBindViewHolder(@NonNull ItemPersonViewHolder holder, int position) {
         Student currentItem = mItemPersonList.get(position);
 
-        //holder.mImageView.setImageDrawable(currentItem.getPhoto().getPicture());
+        holder.mImageView.setImageDrawable(currentItem.getPhoto().getPicture());
         holder.firstName_tv.setText((currentItem.getFirstName()));
         holder.lastName_tv.setText(currentItem.getLastName());
         holder.promo_tv.setText(currentItem.getGroupTP().getGroupTD().getPromo().getName());

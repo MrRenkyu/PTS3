@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context=".MainActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -48,6 +47,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-=======
-    tools:context=".MainActivity"/>
->>>>>>> 403ffeed388dfbff1d48081d855fd45a76c8f5b3
+

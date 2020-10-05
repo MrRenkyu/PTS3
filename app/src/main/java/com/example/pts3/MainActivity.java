@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_main);
         new InitializeJson().execute();
         while (queryEnded) {
@@ -61,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-=======
->>>>>>> 403ffeed388dfbff1d48081d855fd45a76c8f5b3
     }
 
 
