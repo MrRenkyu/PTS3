@@ -1,5 +1,8 @@
 package com.example.pts3;
 
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +12,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.ItemPersonViewHolder> {
     private ArrayList<Student> mItemPersonList;
     public OnItemClickListener mListener;
+    public ItemPersonViewHolder itemViewHolder;
 
     public interface OnItemClickListener {
         void onAddClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
-        mListener= listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 
 
@@ -32,6 +38,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         public TextView promo_tv;
         public TextView grTd_tv;
         public TextView grTp_tv;
+
 
         public ItemPersonViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -46,9 +53,9 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
             mImageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener != null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onAddClick(position);
                         }
                     }
@@ -61,15 +68,20 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     @Override
     public ItemPersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_person, parent, false);
-        ItemPersonViewHolder ipvh = new ItemPersonViewHolder(v, mListener);
-        return ipvh;
-    }
-    public ItemPersonAdapter(ArrayList<Student> itemlist){
+        itemViewHolder = new ItemPersonViewHolder(v, mListener);
+        return itemViewHolder;
+}
+
+    public ItemPersonAdapter(ArrayList<Student> itemlist) {
         mItemPersonList = itemlist;
     }
+
+
     @Override
     public void onBindViewHolder(@NonNull ItemPersonViewHolder holder, int position) {
         Student currentItem = mItemPersonList.get(position);
+
+        currentItem.setItemPersonViewHolder(holder);
 
         holder.mImageView.setImageDrawable(currentItem.getPhoto().getPicture());
         holder.firstName_tv.setText((currentItem.getFirstName()));
@@ -84,4 +96,21 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         return mItemPersonList.size();
     }
 
+
+    public void updateImage(int pos) {
+        Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();
+        ImageView viewOfPicture = mItemPersonList.get(pos).getItemPersonViewHolder().mImageView;
+        if(pictureOfStudent != null) {
+            viewOfPicture.setImageDrawable(pictureOfStudent);
+        }
+        Log.e("update image", "picture of student n° " + mItemPersonList.get(pos).getFirstName());
+    }
+
+
+
 }
+
+
+
+
+

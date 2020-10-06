@@ -113,19 +113,25 @@ public class EtudiantsFragment extends Fragment {
 
 
     class InitializePhoto extends AsyncTask<Integer, Void, Boolean>{
+        int actualposMin;
 
         @Override
         protected Boolean doInBackground(Integer... posMin) {
-            /*
-            for(int i = posMin[0]; i< posMin[0]+6; i++){
+            actualposMin = posMin[0];
+            for(int i = posMin[0]; i< posMin[0]+8; i++){
 
                 try {
-                    listStudent.get(i).getPhoto().getPictureFromHttp();
+                    if(i<listStudent.size()) {
+                        listStudent.get(i).getPhoto().getPictureFromHttp();
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            */
+
+
+
              Log.e("initialize Photo",posMin[0]+"element min ");
 
             return null;
@@ -134,7 +140,18 @@ public class EtudiantsFragment extends Fragment {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
+        Log.e("initializePhoto","On POst Execute");
+
+            for(int i = actualposMin; i< actualposMin+8; i++){
+                if(i < listStudent.size()) {
+                    ((ItemPersonAdapter) mAdapter).updateImage(i);
+                }
+            }
 
     }
     }
+
+
+
+
 }

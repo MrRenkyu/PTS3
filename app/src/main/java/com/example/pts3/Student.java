@@ -16,6 +16,8 @@ public class Student {
 
     private Photo photo;
 
+    private ItemPersonAdapter.ItemPersonViewHolder itemPersonViewHolder;
+
     public Student(GroupTP groupTP, String lastName, String firstName,
                    String number, String birthDate, String bac, String originSchool){
 
@@ -66,5 +68,11 @@ public class Student {
     }
 
 
+    public ItemPersonAdapter.ItemPersonViewHolder getItemPersonViewHolder() {
+        return itemPersonViewHolder;
+    }
 
+    public void setItemPersonViewHolder(ItemPersonAdapter.ItemPersonViewHolder itemPersonViewHolder) {
+        this.itemPersonViewHolder = itemPersonViewHolder;
+    }
 }
