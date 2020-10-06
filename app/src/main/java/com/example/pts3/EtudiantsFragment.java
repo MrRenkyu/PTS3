@@ -1,6 +1,8 @@
 package com.example.pts3;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,26 @@ public class EtudiantsFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                //some code when initially scrollState changes
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //Some code while the list is scrolling
+                LinearLayoutManager lManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                int firstElementPosition = lManager.findFirstVisibleItemPosition();
+                Log.e("scroll event RV",firstElementPosition+" position of first visible element");
+                new InitializePhoto().execute(firstElementPosition);
+
+            }
+        });
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -81,5 +104,37 @@ public class EtudiantsFragment extends Fragment {
 
     public static void setStudentManager(StudentManager studentManager){
         studentManagerFromMainActivity = studentManager;
+    }
+
+
+
+
+
+
+
+    class InitializePhoto extends AsyncTask<Integer, Void, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Integer... posMin) {
+            /*
+            for(int i = posMin[0]; i< posMin[0]+6; i++){
+
+                try {
+                    listStudent.get(i).getPhoto().getPictureFromHttp();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            */
+             Log.e("initialize Photo",posMin[0]+"element min ");
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+        super.onPostExecute(aBoolean);
+
+    }
     }
 }

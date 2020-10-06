@@ -18,8 +18,7 @@ public class Photo {
 
     public Photo(String numStudent) throws IOException {
         this.numStudent = numStudent;
-        //getPictureFromHttp();
-        getPictureFromHttp();
+       // getPictureFromHttp();
     }
 
 
@@ -28,14 +27,16 @@ public class Photo {
      * allow to get the picture of student link with http request
      * @throws IOException
      */
-    private void getPictureFromHttp() throws IOException {
-        String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-i"+getNumStudent()+".jpg";
-        URL url = new URL(urlAddress);
-        URLConnection connector = url.openConnection();
-        connector.connect();
-        InputStream input = connector.getInputStream();
+    public void getPictureFromHttp() throws IOException {
+        if(picture == null) {
+            String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-i" + getNumStudent() + ".jpg";
+            URL url = new URL(urlAddress);
+            URLConnection connector = url.openConnection();
+            connector.connect();
+            InputStream input = connector.getInputStream();
 
-        picture =  Drawable.createFromStream(input,"src");
+            picture = Drawable.createFromStream(input, "src");
+        }
     }
 
 
