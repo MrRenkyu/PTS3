@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="2px">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/lastName_tv"
@@ -89,18 +88,18 @@
 
         <TextView
             android:id="@+id/promo_tv"
-            android:layout_width="58dp"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="96dp"
             android:layout_marginLeft="96dp"
             android:layout_marginBottom="10dp"
-            android:text="TextView"
+            android:text="DUT1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/grTd_tv"
-            android:layout_width="58dp"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
@@ -111,7 +110,7 @@
 
         <TextView
             android:id="@+id/grTp_tv"
-            android:layout_width="58dp"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
@@ -119,6 +118,16 @@
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/grTd_tv" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
