@@ -70,7 +70,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_person, parent, false);
         itemViewHolder = new ItemPersonViewHolder(v, mListener);
         return itemViewHolder;
-}
+    }
 
     public ItemPersonAdapter(ArrayList<Student> itemlist) {
         mItemPersonList = itemlist;
@@ -98,12 +98,28 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
 
     public void updateImage(int pos) {
-        Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();
-        ImageView viewOfPicture = mItemPersonList.get(pos).getItemPersonViewHolder().mImageView;
-        if(pictureOfStudent != null) {
-            viewOfPicture.setImageDrawable(pictureOfStudent);
+        Log.e("updateImge",pos+" position du curseur "+mItemPersonList.size()+" size of actual liste");
+        if(pos < mItemPersonList.size()) {
+            if (mItemPersonList.get(pos).getItemPersonViewHolder() != null) {
+                Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();
+                ImageView viewOfPicture = mItemPersonList.get(pos).getItemPersonViewHolder().mImageView;
+                if (pictureOfStudent != null) {
+                    viewOfPicture.setImageDrawable(pictureOfStudent);
+                    Log.e("update image", "picture of student n° " + mItemPersonList.get(pos).getFirstName());
+                }else{
+                    Log.e("updateImage","pictureOfStudent is null");
+                }
+            } else {
+                Log.e("updateImage", "ImageView is null ");
+            }
+
+
+
+        }else{
+            Log.e("updateImage","out of bound ! ");
         }
-        Log.e("update image", "picture of student n° " + mItemPersonList.get(pos).getFirstName());
+
+
     }
 
 

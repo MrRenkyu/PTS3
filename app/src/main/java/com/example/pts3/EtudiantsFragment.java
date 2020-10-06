@@ -80,7 +80,9 @@ public class EtudiantsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter = new ItemPersonAdapter(studentManagerFromMainActivity.MatchingStudent(newText));
+                listStudent = studentManagerFromMainActivity.MatchingStudent(newText);
+                mAdapter = new ItemPersonAdapter(listStudent);
+
 
                 mLayoutManager = new LinearLayoutManager(getContext());
 
@@ -123,6 +125,8 @@ public class EtudiantsFragment extends Fragment {
                 try {
                     if(i<listStudent.size()) {
                         listStudent.get(i).getPhoto().getPictureFromHttp();
+                    }else{
+                        Log.e("InitializePhoto"," out of bound");
                     }
 
                 } catch (IOException e) {
