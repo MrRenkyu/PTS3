@@ -19,6 +19,8 @@ public class EtudiantsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<Student> listStudent;
+
 
     private static StudentManager studentManagerFromMainActivity;
 
@@ -36,7 +38,6 @@ public class EtudiantsFragment extends Fragment {
             }
         });
 
-        final ArrayList<Student> listStudent;
         listStudent = getStudentManager().getAllStudents();
 
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
@@ -50,18 +51,13 @@ public class EtudiantsFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<Student> tempList = new ArrayList<>();
-                for (int i = 0; i < listStudent.size();i++){
-                    if (listStudent.get(i).getFirstName().contains(newText)){
-                        tempList.add(listStudent.get(i));
-                    }
-                }
-                mAdapter = new ItemPersonAdapter(tempList);
+                mAdapter = new ItemPersonAdapter(studentManagerFromMainActivity.MatchingStudent(newText));
 
                 mLayoutManager = new LinearLayoutManager(getContext());
 
@@ -73,6 +69,11 @@ public class EtudiantsFragment extends Fragment {
 
         return rootView;
     }
+
+
+
+
+
 
     public static StudentManager getStudentManager(){
         return studentManagerFromMainActivity;

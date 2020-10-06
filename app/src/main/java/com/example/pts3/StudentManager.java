@@ -125,4 +125,43 @@ public class StudentManager {
 
         return allStudents;
     }
+
+
+
+    public ArrayList<Student> MatchingStudent(String parameter){
+        ArrayList<Student> matchingListStudent = new ArrayList<>();
+
+        for(Student eachStudent : getAllStudents()){
+            if(eachStudent.getFirstName().contains(parameter.toUpperCase())){
+                matchingListStudent.add(eachStudent);
+                continue;
+            }
+
+            if(eachStudent.getLastName().contains(parameter.toUpperCase())){
+                matchingListStudent.add(eachStudent);
+                continue;
+            }
+
+            String promoName = eachStudent.getGroupTP().getGroupTD().getPromo().getName();
+            if(promoName.contains(parameter.toUpperCase())){
+                matchingListStudent.add(eachStudent);
+                continue;
+            }
+
+            String grTd = eachStudent.getGroupTP().getGroupTD().getName();
+            if(grTd.contains(parameter.toUpperCase())){
+                matchingListStudent.add(eachStudent);
+                continue;
+            }
+
+            String grTp = eachStudent.getGroupTP().getName();
+            if(grTp.contains(parameter.toUpperCase())){
+                matchingListStudent.add(eachStudent);
+                continue;
+            }
+
+        }
+
+        return matchingListStudent;
+    }
 }

@@ -64,4 +64,7 @@ public class Student {
     public Photo getPhoto() {
         return photo;
     }
+
+
+
 }
