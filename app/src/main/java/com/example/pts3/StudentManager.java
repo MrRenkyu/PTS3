@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class StudentManager {
+public class StudentManager{
 
 
     private static final String URL_JSON = "http://perso.univ-lemans.fr/~plafor/gestionabs/studentData.json";

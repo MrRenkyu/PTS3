@@ -1,7 +1,11 @@
 package com.example.pts3;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.ItemPersonViewHolder> {
+public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.ItemPersonViewHolder> implements Serializable {
     private ArrayList<Student> mItemPersonList;
     public OnItemClickListener mListener;
     public ItemPersonViewHolder itemViewHolder;
+    private static EtudiantsFragment studentFragment;
 
     public interface OnItemClickListener {
         void onAddClick(int position);
@@ -30,7 +36,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     }
 
 
-    public static class ItemPersonViewHolder extends RecyclerView.ViewHolder {
+    public static class ItemPersonViewHolder extends RecyclerView.ViewHolder implements Serializable {
         public ImageView mImageView;
         public TextView firstName_tv;
         public ImageView mImageView2;
@@ -50,6 +56,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
             grTp_tv = itemView.findViewById(R.id.grTp_tv);
             mImageView2 = itemView.findViewById(R.id.imageView19);
 
+            /*
             mImageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,10 +64,13 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onAddClick(position);
+
                         }
                     }
                 }
             });
+
+             */
         }
     }
 
@@ -79,7 +89,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
     @Override
     public void onBindViewHolder(@NonNull ItemPersonViewHolder holder, int position) {
-        Student currentItem = mItemPersonList.get(position);
+        final Student currentItem = mItemPersonList.get(position);
 
         currentItem.setItemPersonViewHolder(holder);
 
@@ -89,6 +99,24 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         holder.promo_tv.setText(currentItem.getGroupTP().getGroupTD().getPromo().getName());
         holder.grTd_tv.setText(currentItem.getGroupTP().getGroupTD().getName());
         holder.grTp_tv.setText(currentItem.getGroupTP().getName());
+
+        holder.mImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("ItemPersonAdaptateur", "new on click listener open");
+
+                Bundle b = new Bundle();
+                b.putString(StudentParam.firstName.toString(), currentItem.getFirstName());
+                b.putString(StudentParam.lastName.toString(), currentItem.getLastName());
+                b.putString(StudentParam.birthDate.toString(),currentItem.getBirthDate());
+                b.putString(StudentParam.number.toString(),currentItem.getNumber());
+                b.putString(StudentParam.oldBac.toString(),currentItem.getBac());
+                b.putString(StudentParam.originSchool.toString(), currentItem.getOriginSchool());
+
+                studentFragment.startStudentHomePageActivity(b, currentItem.getPhoto());
+
+            }
+        });
     }
 
     @Override
@@ -123,7 +151,9 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     }
 
 
-
+    public static void setStudentFragment(EtudiantsFragment StudentFragment) {
+        studentFragment = StudentFragment;
+    }
 }
 
 
