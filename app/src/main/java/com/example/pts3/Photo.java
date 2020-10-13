@@ -5,13 +5,14 @@ import android.graphics.drawable.Drawable;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 
 /**
  * Class Photo contain the picture of student
  */
-public class Photo {
+public class Photo implements Serializable {
 
     private Drawable picture;
     private String numStudent;

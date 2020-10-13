@@ -1,8 +1,9 @@
 package com.example.pts3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Promo {
+public class Promo  implements Serializable {
 
     private String name;
     private ArrayList<GroupTD> GroupsTD = new ArrayList<GroupTD>();

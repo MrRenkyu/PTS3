@@ -1,5 +1,9 @@
 package com.example.pts3;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +28,12 @@ public class EtudiantsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Student> listStudent;
+    private Intent studentHomePageIntent;
+
 
 
     private static StudentManager studentManagerFromMainActivity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,10 +54,14 @@ public class EtudiantsFragment extends Fragment {
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
         mAdapter = new ItemPersonAdapter(listStudent);
 
+
         mLayoutManager = new LinearLayoutManager(getContext());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        studentHomePageIntent = new Intent(inflater.getContext(), StudentHomePage.class);
+        ItemPersonAdapter.setStudentFragment(this);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -94,6 +106,7 @@ public class EtudiantsFragment extends Fragment {
 
         return rootView;
     }
+
 
 
 
@@ -153,6 +166,21 @@ public class EtudiantsFragment extends Fragment {
             }
 
     }
+    }
+
+
+    public void startStudentHomePageActivity(Bundle studentInfo, Photo studentPhoto){
+
+        studentHomePageIntent.putExtra("studentInfos",studentInfo);
+
+        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),studentPhoto );
+        Bitmap bitmapStudent = ((BitmapDrawable)studentPhoto.getPicture()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmapStudent.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+
+        studentHomePageIntent.putExtra(StudentParam.Photo.toString(),b);
+        startActivity(studentHomePageIntent);
     }
 
 

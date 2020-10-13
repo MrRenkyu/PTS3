@@ -1,8 +1,9 @@
 package com.example.pts3;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Student {
+public class Student implements Serializable {
 
     private GroupTP groupTP;
 
