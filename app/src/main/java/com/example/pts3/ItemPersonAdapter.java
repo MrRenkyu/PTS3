@@ -59,6 +59,8 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
                             listener.onAddClick(position);
                         }
                     }
+
+                    
                 }
             });
         }
