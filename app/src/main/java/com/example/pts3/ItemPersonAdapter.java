@@ -114,6 +114,10 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
                 b.putString(StudentParam.number.toString(),currentItem.getNumber());
                 b.putString(StudentParam.oldBac.toString(),currentItem.getBac());
                 b.putString(StudentParam.originSchool.toString(), currentItem.getOriginSchool());
+                b.putString(StudentParam.groupPromo.toString(), currentItem.getGroupTP().getGroupTD().getPromo().getName());
+                b.putString(StudentParam.groupTD.toString(), currentItem.getGroupTP().getGroupTD().getName());
+                b.putString(StudentParam.groupTP.toString(), currentItem.getGroupTP().getName());
+
 
                 studentFragment.startStudentHomePageActivity(b, currentItem.getPhoto());
 

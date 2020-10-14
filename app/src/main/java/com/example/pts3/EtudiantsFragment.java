@@ -179,7 +179,9 @@ public class EtudiantsFragment extends Fragment {
         bitmapStudent.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] b = baos.toByteArray();
 
-        studentHomePageIntent.putExtra(StudentParam.Photo.toString(),b);
+        Bundle photoBundle = new Bundle();
+        photoBundle.putByteArray(StudentParam.Photo.toString(),b);
+        studentHomePageIntent.putExtra(StudentParam.Photo.toString(),photoBundle);
         startActivity(studentHomePageIntent);
     }
 
