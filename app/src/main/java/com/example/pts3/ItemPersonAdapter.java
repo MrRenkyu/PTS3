@@ -95,6 +95,10 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
         currentItem.setItemPersonViewHolder(holder);
 
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) holder.mImageView.getLayoutParams();
+        params.width = 175;
+        params.height = 175;
+        holder.mImageView.setLayoutParams(params);
         holder.mImageView.setImageDrawable(currentItem.getPhoto().getPicture());
         holder.firstName_tv.setText((currentItem.getFirstName()));
         holder.lastName_tv.setText(currentItem.getLastName());

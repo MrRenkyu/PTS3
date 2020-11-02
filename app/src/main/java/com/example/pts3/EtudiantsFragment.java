@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +30,7 @@ public class EtudiantsFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Student> listStudent;
     private Intent studentHomePageIntent;
-
-
+    private View actualView;
 
     private static StudentManager studentManagerFromMainActivity;
 
@@ -39,8 +39,8 @@ public class EtudiantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_etudiants, container, false);
-        searchView = rootView.findViewById(R.id.searchView);
+        actualView = inflater.inflate(R.layout.fragment_etudiants, container, false);
+        searchView = actualView.findViewById(R.id.searchView);
 
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class EtudiantsFragment extends Fragment {
 
         listStudent = getStudentManager().getAllStudents();
 
-        mRecyclerView = rootView.findViewById(R.id.recyclerView);
+        mRecyclerView = actualView.findViewById(R.id.recyclerView);
         mAdapter = new ItemPersonAdapter(listStudent);
 
 
@@ -104,7 +104,7 @@ public class EtudiantsFragment extends Fragment {
             }
         });
 
-        return rootView;
+        return actualView;
     }
 
 
@@ -173,11 +173,21 @@ public class EtudiantsFragment extends Fragment {
 
         studentHomePageIntent.putExtra("studentInfos",studentInfo);
 
-        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),studentPhoto );
-        Bitmap bitmapStudent = ((BitmapDrawable)studentPhoto.getPicture()).getBitmap();
+        Bitmap bitmapStudent;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] b;
+        /*
+        if(studentPhoto.getPicture() != null) {
+            bitmapStudent = ((BitmapDrawable) studentPhoto.getPicture()).getBitmap();
+        }else{
+            bitmapStudent = ((BitmapDrawable) ( ContextCompat.getDrawable(actualView.getContext(), R.drawable.ic_launcher_foreground))  ).getBitmap();
+        }
+        */
+        bitmapStudent = ((BitmapDrawable) studentPhoto.getPicture()).getBitmap();
+        baos = new ByteArrayOutputStream();
         bitmapStudent.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
+        b = baos.toByteArray();
+
 
         Bundle photoBundle = new Bundle();
         photoBundle.putByteArray(StudentParam.Photo.toString(),b);

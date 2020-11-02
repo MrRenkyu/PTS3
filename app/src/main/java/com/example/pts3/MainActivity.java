@@ -16,12 +16,15 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    static Context applicationContext;
     StudentManager studentManager;
     boolean queryEnded = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applicationContext = this;
+
         setContentView(R.layout.activity_main);
         new InitializeJson().execute();
         while (queryEnded) {

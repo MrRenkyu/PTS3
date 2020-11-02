@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,6 +50,12 @@ public class StudentHomePage extends AppCompatActivity {
 
         byte[] photoByteArray = extraBundle.getBundle(StudentParam.Photo.toString()).getByteArray(StudentParam.Photo.toString());
         Bitmap bmp = BitmapFactory.decodeByteArray(photoByteArray, 0, photoByteArray.length);
+
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) photoStudent.getLayoutParams();
+        params.width = 325;
+        params.height = 325;
+        photoStudent.setLayoutParams(params);
+
         photoStudent.setImageBitmap(bmp);
 
 

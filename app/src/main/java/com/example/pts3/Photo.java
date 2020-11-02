@@ -1,11 +1,15 @@
 package com.example.pts3;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
+
+import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -32,11 +36,23 @@ public class Photo implements Serializable {
         if(picture == null) {
             String urlAddress = "http://perso.univ-lemans.fr/~plafor/gestionabs/images/p-i" + getNumStudent() + ".jpg";
             URL url = new URL(urlAddress);
+            /*
             URLConnection connector = url.openConnection();
             connector.connect();
-            InputStream input = connector.getInputStream();
+             */
 
-            picture = Drawable.createFromStream(input, "src");
+            HttpURLConnection connector = (HttpURLConnection)url.openConnection();
+            connector.setRequestMethod("GET");
+            int code = connector.getResponseCode();
+            Log.e("Photo","HTTP CODE :"+code);
+            if(code != 404) {
+                connector.connect();
+                InputStream input = connector.getInputStream();
+                picture = Drawable.createFromStream(input, "src");
+            }else{
+                picture = ContextCompat.getDrawable(MainActivity.applicationContext,R.drawable.user);
+            }
+
         }
     }
 
