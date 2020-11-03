@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Viewholder> {
 
     private ArrayList<BlockGroup> listBlockGroup;
+    private GroupesFragment groupesFragment;
 
     public BlockGroupAdapter(ArrayList<BlockGroup> listBlockGroup) {
         this.listBlockGroup = listBlockGroup;
@@ -58,10 +59,22 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
 
         int tabtextViewGroupName = blockGroup.getNbTab();
         textViewGroupName.setX(50*tabtextViewGroupName+25);
+
+        holder.mStudentNumber_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                groupesFragment.startGroupDetailActivity();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return listBlockGroup.size();
+    }
+
+
+    public void setGroupesFragment(GroupesFragment groupesFragment) {
+        this.groupesFragment = groupesFragment;
     }
 }

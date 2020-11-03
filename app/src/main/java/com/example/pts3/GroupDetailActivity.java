@@ -1,28 +1,23 @@
 package com.example.pts3;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SearchView;
-
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class EtudiantsFragment extends Fragment {
+public class GroupDetailActivity extends AppCompatActivity {
 
     private SearchView searchView;
     private RecyclerView mRecyclerView;
@@ -30,16 +25,13 @@ public class EtudiantsFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Student> listStudent;
     private Intent studentHomePageIntent;
-    private View actualView;
-
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        actualView = inflater.inflate(R.layout.fragment_etudiants, container, false);
-        searchView = actualView.findViewById(R.id.searchView);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_group_detail);
+        searchView = findViewById(R.id.searchView_GroupDetail);
 
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,17 +42,17 @@ public class EtudiantsFragment extends Fragment {
 
         listStudent = MainActivity.studentManager.getAllStudents();
 
-        mRecyclerView = actualView.findViewById(R.id.recyclerView);
-        mAdapter = new ItemPersonAdapter(listStudent);
+        mRecyclerView = findViewById(R.id.recyclerView_GroupDetail);
+        mAdapter = new GroupDetailAdaptater(listStudent);
 
 
-        mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        studentHomePageIntent = new Intent(inflater.getContext(), StudentHomePage.class);
-        ItemPersonAdapter.setStudentFragment(this);
+        studentHomePageIntent = new Intent(this, StudentHomePage.class);
+        GroupDetailAdaptater.setGroupDetailActivity(this);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -75,7 +67,7 @@ public class EtudiantsFragment extends Fragment {
                 //Some code while the list is scrolling
                 LinearLayoutManager lManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
                 int firstElementPosition = lManager.findFirstVisibleItemPosition();
-                Log.e("scroll event RV",firstElementPosition+" position of first visible element");
+                Log.e("scroll event RV", firstElementPosition + " position of first visible element");
                 new InitializePhoto().execute(firstElementPosition);
 
             }
@@ -92,10 +84,10 @@ public class EtudiantsFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 listStudent = MainActivity.studentManager.MatchingStudent(newText);
-                mAdapter = new ItemPersonAdapter(listStudent);
+                mAdapter = new GroupDetailAdaptater(listStudent);
 
 
-                mLayoutManager = new LinearLayoutManager(getContext());
+                mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
@@ -103,28 +95,23 @@ public class EtudiantsFragment extends Fragment {
             }
         });
 
-        return actualView;
+
     }
 
 
-
-
-
-
-
-    class InitializePhoto extends AsyncTask<Integer, Void, Boolean>{
+    class InitializePhoto extends AsyncTask<Integer, Void, Boolean> {
         int actualposMin;
 
         @Override
         protected Boolean doInBackground(Integer... posMin) {
             actualposMin = posMin[0];
-            for(int i = posMin[0]; i< posMin[0]+8; i++){
+            for (int i = posMin[0]; i < posMin[0] + 8; i++) {
 
                 try {
-                    if(i<listStudent.size()) {
+                    if (i < listStudent.size()) {
                         listStudent.get(i).getPhoto().getPictureFromHttp();
-                    }else{
-                        Log.e("InitializePhoto"," out of bound");
+                    } else {
+                        Log.e("InitializePhoto", " out of bound");
                     }
 
                 } catch (IOException e) {
@@ -133,30 +120,29 @@ public class EtudiantsFragment extends Fragment {
             }
 
 
-
-             Log.e("initialize Photo",posMin[0]+"element min ");
+            Log.e("initialize Photo", posMin[0] + "element min ");
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-        super.onPostExecute(aBoolean);
-        Log.e("initializePhoto","On POst Execute");
+            super.onPostExecute(aBoolean);
+            Log.e("initializePhoto", "On POst Execute");
 
-            for(int i = actualposMin; i< actualposMin+8; i++){
-                if(i < listStudent.size()) {
-                    ((ItemPersonAdapter) mAdapter).updateImage(i);
+            for (int i = actualposMin; i < actualposMin + 8; i++) {
+                if (i < listStudent.size()) {
+                    ((GroupDetailAdaptater) mAdapter).updateImage(i);
                 }
             }
 
+        }
     }
-    }
 
 
-    public void startStudentHomePageActivity(Bundle studentInfo, Photo studentPhoto){
+    public void startStudentHomePageActivity(Bundle studentInfo, Photo studentPhoto) {
 
-        studentHomePageIntent.putExtra("studentInfos",studentInfo);
+        studentHomePageIntent.putExtra("studentInfos", studentInfo);
 
         Bitmap bitmapStudent;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -175,12 +161,8 @@ public class EtudiantsFragment extends Fragment {
 
 
         Bundle photoBundle = new Bundle();
-        photoBundle.putByteArray(StudentParam.Photo.toString(),b);
-        studentHomePageIntent.putExtra(StudentParam.Photo.toString(),photoBundle);
+        photoBundle.putByteArray(StudentParam.Photo.toString(), b);
+        studentHomePageIntent.putExtra(StudentParam.Photo.toString(), photoBundle);
         startActivity(studentHomePageIntent);
     }
-
-
-
-
 }
