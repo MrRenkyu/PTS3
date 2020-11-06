@@ -101,9 +101,9 @@ public class GroupesFragment extends Fragment {
         for (Promo eachPromo : allPromos){
             blockGroupsList.add(new BlockGroup(1, eachPromo.getName(), eachPromo.getNumberStudent(), eachPromo.getStudentList()));
             for( GroupTD eachGrTd : eachPromo.getGroupsTD()){
-                blockGroupsList.add(new BlockGroup(2, eachGrTd.getName(), eachGrTd.getNumberStudent()));
+                blockGroupsList.add(new BlockGroup(2, eachGrTd.getName(), eachGrTd.getNumberStudent(), eachGrTd.getStudentList()));
                 for (GroupTP eachGrTp : eachGrTd.getGroupsTP()){
-                    blockGroupsList.add(new BlockGroup(3, eachGrTp.getName(), eachGrTp.getNumberStudent()));
+                    blockGroupsList.add(new BlockGroup(3, eachGrTp.getName(), eachGrTp.getNumberStudent(), eachGrTp.getStudentList()));
                     Log.e(eachGrTp.getName(), String.valueOf(eachGrTp.getNumberStudent()) );
                 }
             }

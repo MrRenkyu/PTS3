@@ -40,7 +40,7 @@ public class GroupDetailActivity extends AppCompatActivity {
             }
         });
 
-        listStudent = MainActivity.studentManager.
+        listStudent = MainActivity.studentManager.getAllStudents();
 
         mRecyclerView = findViewById(R.id.recyclerView_GroupDetail);
         mAdapter = new GroupDetailAdaptater(listStudent);
