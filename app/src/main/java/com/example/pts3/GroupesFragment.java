@@ -99,7 +99,7 @@ public class GroupesFragment extends Fragment {
         ArrayList<Promo> allPromos = MainActivity.studentManager.getAllPromos();
         Log.e("size of promo list", allPromos.size()+" promo");
         for (Promo eachPromo : allPromos){
-            blockGroupsList.add(new BlockGroup(1, eachPromo.getName(), eachPromo.getNumberStudent()));
+            blockGroupsList.add(new BlockGroup(1, eachPromo.getName(), eachPromo.getNumberStudent(), eachPromo.getStudentList()));
             for( GroupTD eachGrTd : eachPromo.getGroupsTD()){
                 blockGroupsList.add(new BlockGroup(2, eachGrTd.getName(), eachGrTd.getNumberStudent()));
                 for (GroupTP eachGrTp : eachGrTd.getGroupsTP()){

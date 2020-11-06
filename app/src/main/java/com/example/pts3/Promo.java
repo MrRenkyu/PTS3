@@ -3,7 +3,7 @@ package com.example.pts3;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Promo  implements Serializable {
+public class Promo  implements ListStudent {
 
     private String name;
     private ArrayList<GroupTD> GroupsTD = new ArrayList<GroupTD>();
@@ -32,4 +32,12 @@ public class Promo  implements Serializable {
         return sommeNum;
     }
 
+    @Override
+    public ArrayList<Student> getStudentList() {
+        ArrayList<Student> studentList = new ArrayList<>();
+        for(GroupTD eachTD : GroupsTD){
+            studentList.addAll(eachTD.getStudentList());
+        }
+        return studentList;
+    }
 }

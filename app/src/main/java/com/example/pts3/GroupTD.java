@@ -3,7 +3,7 @@ package com.example.pts3;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupTD implements Serializable {
+public class GroupTD implements ListStudent {
     private String name;
     private Promo promo;
 
@@ -36,5 +36,14 @@ public class GroupTD implements Serializable {
             sommeNum = sommeNum+ grTp.getNumberStudent();
         }
         return sommeNum;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentList() {
+        ArrayList<Student> studentList = new ArrayList<>();
+        for(GroupTP eachTP : GroupsTP){
+            studentList.addAll(eachTP.getStudentList());
+        }
+        return studentList;
     }
 }
