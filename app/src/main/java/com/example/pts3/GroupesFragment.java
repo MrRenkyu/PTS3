@@ -150,10 +150,9 @@ public class GroupesFragment extends Fragment {
 
 
 
-    public void startGroupDetailActivity(){
-
+    public void startGroupDetailActivity( ArrayList<Student> studentArrayList){
+        GroupDetailActivity.setListStudent(studentArrayList);
         startActivity(groupDetailIntent);
     }
-
 
 }

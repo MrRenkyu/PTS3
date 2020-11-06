@@ -38,4 +38,12 @@ public class BlockGroup {
     public void setNbEleve(int nbEleve) {
         this.nbEleve = nbEleve;
     }
+
+    public ArrayList<Student> getStudentArrayList() {
+        return studentArrayList;
+    }
+
+    public void setStudentArrayList(ArrayList<Student> studentArrayList) {
+        this.studentArrayList = studentArrayList;
+    }
 }

@@ -23,7 +23,7 @@ public class GroupDetailActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<Student> listStudent;
+    private  static  ArrayList<Student> listStudent;
     private Intent studentHomePageIntent;
 
 
@@ -39,8 +39,6 @@ public class GroupDetailActivity extends AppCompatActivity {
                 searchView.onActionViewExpanded();
             }
         });
-
-        listStudent = MainActivity.studentManager.getAllStudents();
 
         mRecyclerView = findViewById(R.id.recyclerView_GroupDetail);
         mAdapter = new GroupDetailAdaptater(listStudent);
@@ -83,7 +81,6 @@ public class GroupDetailActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                listStudent = MainActivity.studentManager.MatchingStudent(newText);
                 mAdapter = new GroupDetailAdaptater(listStudent);
 
 
@@ -164,5 +161,10 @@ public class GroupDetailActivity extends AppCompatActivity {
         photoBundle.putByteArray(StudentParam.Photo.toString(), b);
         studentHomePageIntent.putExtra(StudentParam.Photo.toString(), photoBundle);
         startActivity(studentHomePageIntent);
+    }
+
+
+    public static void setListStudent(ArrayList<Student> ListStudent) {
+        listStudent = ListStudent;
     }
 }

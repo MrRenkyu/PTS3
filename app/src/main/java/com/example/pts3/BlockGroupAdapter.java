@@ -1,6 +1,7 @@
 package com.example.pts3;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,10 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        BlockGroup blockGroup = listBlockGroup.get(position);
+        final BlockGroup blockGroup = listBlockGroup.get(position);
 
         TextView textViewGroupName = holder.mGroupName;
-        textViewGroupName.setText(blockGroup.getCategorie());
+        holder.mGroupName.setText(blockGroup.getCategorie());
 
         TextView textViewNumStudent = holder.mStudentNumber_tv;
         textViewNumStudent.setText("("+ blockGroup.getNbEleve()+" étudiants)");
@@ -63,7 +64,8 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
         holder.mStudentNumber_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                groupesFragment.startGroupDetailActivity();
+
+                groupesFragment.startGroupDetailActivity(blockGroup.getStudentArrayList());
             }
         });
     }
