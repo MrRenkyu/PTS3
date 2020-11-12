@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -23,14 +24,19 @@ public class GroupDetailActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private  static  ArrayList<Student> listStudent;
     private Intent studentHomePageIntent;
+    private TextView groupName;
 
+    private  static  ArrayList<Student> listStudent;
+    private static String groupNameString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_detail);
+        groupName = findViewById(R.id.TV_groupName);
+        groupName.setText(GroupDetailActivity.groupNameString);
+
         searchView = findViewById(R.id.searchView_GroupDetail);
 
         searchView.setOnClickListener(new View.OnClickListener() {
@@ -166,5 +172,9 @@ public class GroupDetailActivity extends AppCompatActivity {
 
     public static void setListStudent(ArrayList<Student> ListStudent) {
         listStudent = ListStudent;
+    }
+
+    public static void setGroupNameString(String groupNameString) {
+        GroupDetailActivity.groupNameString = groupNameString;
     }
 }

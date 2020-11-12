@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
@@ -115,11 +116,11 @@ public class GroupDetailAdaptater extends RecyclerView.Adapter<GroupDetailAdapta
 
 
     public void updateImage(int pos) {
-        Log.e("updateImge",pos+" position du curseur "+mItemPersonList.size()+" size of actual liste");
+        Log.e("updateImge",pos+" position du curseur, "+mItemPersonList.size()+" size of actual liste");
         if(pos < mItemPersonList.size()) {
-            if (mItemPersonList.get(pos).getItemPersonViewHolder() != null) {
+            if (mItemPersonList.get(pos).getGroupDetailAdaptaterHolder() != null) {
                 Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();
-                ImageView viewOfPicture = mItemPersonList.get(pos).getItemPersonViewHolder().mImageView;
+                ImageView viewOfPicture = mItemPersonList.get(pos).getGroupDetailAdaptaterHolder().mImageView;
                 if (pictureOfStudent != null) {
                     viewOfPicture.setImageDrawable(pictureOfStudent);
                     Log.e("update image", "picture of student n° " + mItemPersonList.get(pos).getFirstName());

@@ -65,7 +65,7 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
             @Override
             public void onClick(View v) {
 
-                groupesFragment.startGroupDetailActivity(blockGroup.getStudentArrayList());
+                groupesFragment.startGroupDetailActivity(blockGroup.getStudentArrayList(),blockGroup.getCategorie());
             }
         });
     }
