@@ -1,11 +1,15 @@
 package com.example.pts3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -13,6 +17,13 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class QuizzFragment extends Fragment {
+
+    // TODO: Rename modaliteButton name, find better description
+    private Button groupButton;
+    private Button modeButton;
+    private Button modaliteButton;
+
+    private View actualView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,9 +66,40 @@ public class QuizzFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quizz, container, false);
+        actualView = inflater.inflate(R.layout.fragment_quizz, container, false);
+
+        // Find view by Id
+        groupButton = actualView.findViewById(R.id.groupButton);
+        modeButton = actualView.findViewById(R.id.modeButton);
+        modaliteButton = actualView.findViewById(R.id.modaliteButton);
+
+        // Set on click listener switch
+        //groupButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        switch (v.getId()) {
+        //            case R.id.groupButton:
+        //                Intent intentGrp = new Intent(inflater.getContext(), SettingGroup.class);
+        //                startActivity(intentGrp);
+        //                break;
+        //            case R.id.modeButton:
+        //                Intent intentMod = new Intent(inflater.getContext(), SettingMode.class);
+        //                startActivity(intentMod);
+        //                break;
+        //            case R.id.modaliteButton:
+        //                Intent intentModal = new Intent(inflater.getContext(), SettingModa.class);
+        //                startActivity(intentModal);
+        //                break;
+        //        }
+        //    }
+        //});
+
+        return actualView;
+
     }
+
 }
