@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -88,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aBoolean);
 
         }
+    }
+
+    public  static Context getContext(){
+        return applicationContext;
     }
 
 }
