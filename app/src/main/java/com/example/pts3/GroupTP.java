@@ -3,7 +3,7 @@ package com.example.pts3;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupTP implements Serializable {
+public class GroupTP implements ListStudent {
 
     private String name;
     private GroupTD groupTD;
@@ -26,11 +26,12 @@ public class GroupTP implements Serializable {
         return groupTD;
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
-    }
-
     public int getNumberStudent(){
         return students.size();
+    }
+
+    @Override
+    public ArrayList<Student> getStudentList() {
+        return students;
     }
 }

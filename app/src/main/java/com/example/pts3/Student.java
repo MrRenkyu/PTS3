@@ -18,6 +18,7 @@ public class Student implements Serializable {
     private Photo photo;
 
     private ItemPersonAdapter.ItemPersonViewHolder itemPersonViewHolder;
+    private GroupDetailAdaptater.GroupDetailAdaptaterHolder groupDetailAdaptaterHolder;
 
     public Student(GroupTP groupTP, String lastName, String firstName,
                    String number, String birthDate, String bac, String originSchool){
@@ -75,5 +76,14 @@ public class Student implements Serializable {
 
     public void setItemPersonViewHolder(ItemPersonAdapter.ItemPersonViewHolder itemPersonViewHolder) {
         this.itemPersonViewHolder = itemPersonViewHolder;
+    }
+
+
+    public GroupDetailAdaptater.GroupDetailAdaptaterHolder getGroupDetailAdaptaterHolder() {
+        return groupDetailAdaptaterHolder;
+    }
+
+    public void setGroupDetailAdaptaterHolder(GroupDetailAdaptater.GroupDetailAdaptaterHolder groupDetailAdaptaterHolder) {
+        this.groupDetailAdaptaterHolder = groupDetailAdaptaterHolder;
     }
 }

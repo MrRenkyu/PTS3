@@ -16,8 +16,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+
     static Context applicationContext;
-    StudentManager studentManager;
+    static StudentManager studentManager;
     boolean queryEnded = true;
 
     @Override
@@ -76,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("initializeJson", "student manager is end to initialize");
 
             Log.e("initializeJson", "all file are get from HTTP");
-            GroupesFragment.setStudentManager(studentManager);
-            EtudiantsFragment.setStudentManager(studentManager);
+
 
             queryEnded = false;
             return false;

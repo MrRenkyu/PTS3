@@ -72,7 +72,7 @@ public class StudentManager{
             if (promo.getName() == promoName){
                 for (GroupTD groupTD: promo.getGroupsTD()) {
                     for (GroupTP groupTP: groupTD.getGroupsTP()) {
-                        studentsList.addAll(groupTP.getStudents());
+                        studentsList.addAll(groupTP.getStudentList());
                     }
                 }
 
@@ -87,7 +87,7 @@ public class StudentManager{
                 for (GroupTD groupTD: promo.getGroupsTD()) {
                     if (groupTD.getName() == tdName){
                         for (GroupTP groupTP: groupTD.getGroupsTP()) {
-                            studentsList.addAll(groupTP.getStudents());
+                            studentsList.addAll(groupTP.getStudentList());
                         }
                     }
                 }
@@ -101,7 +101,7 @@ public class StudentManager{
             for (GroupTD groupTD: promo.getGroupsTD()) {
                     for (GroupTP groupTP: groupTD.getGroupsTP()) {
                         if (groupTP.getName() == tpName)
-                            studentsList.addAll(groupTP.getStudents());
+                            studentsList.addAll(groupTP.getStudentList());
                 }
             }
         }
@@ -118,7 +118,7 @@ public class StudentManager{
         for(Promo eachPromo : promoList){
             for(GroupTD grTd: eachPromo.getGroupsTD()){
                 for(GroupTP grTp: grTd.getGroupsTP()){
-                    allStudents.addAll(grTp.getStudents());
+                    allStudents.addAll(grTp.getStudentList());
                 }
             }
         }
