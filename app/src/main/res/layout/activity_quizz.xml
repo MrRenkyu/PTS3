@@ -24,26 +24,29 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewSuccess"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".70"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#A85050">
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="400dp"
-                android:layout_height="250dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:src="@drawable/user" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="400dp"
-                android:layout_height="250dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:src="@drawable/user" />
@@ -51,7 +54,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/imageView2"
