@@ -1,7 +1,6 @@
 package com.example.pts3;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,15 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,9 +29,6 @@ public class ActivityQuizz extends AppCompatActivity {
     private ImageView image2;
     private ImageView image3;
     private ImageView image4;
-
-    int nb1,nb2,nb3,nb4;
-
 
     private TextView textViewPerson;
     private TextView textViewNbQuizzLeft;
@@ -122,16 +115,19 @@ public class ActivityQuizz extends AppCompatActivity {
 
     private void setRandomImage(){
         int max = studentManager.getAllStudents().size();
-        nb1 = random.nextInt(max);
+        int nb1 = random.nextInt(max);
 
+        int nb2;
         do {
             nb2 = random.nextInt(max);
         }while (nb1 == nb2);
 
+        int nb3;
         do {
             nb3 = random.nextInt(max);
         }while (nb1 == nb3 || nb2 == nb3);
 
+        int nb4;
         do {
             nb4 = random.nextInt(max);
         }while (nb1 == nb4 || nb2 == nb4 || nb3 == nb4);
@@ -161,8 +157,10 @@ public class ActivityQuizz extends AppCompatActivity {
                 + " " + studentManager.getAllStudents().get(imageToFInd).getLastName() + " ?";
         textViewPerson.setText(txt);
 
-        new InitializePhoto().execute();
-
+        image1.setImageDrawable(studentManager.getAllStudents().get(nb1).getPhoto().getPicture());
+        image2.setImageDrawable(studentManager.getAllStudents().get(nb2).getPhoto().getPicture());
+        image3.setImageDrawable(studentManager.getAllStudents().get(nb3).getPhoto().getPicture());
+        image4.setImageDrawable(studentManager.getAllStudents().get(nb4).getPhoto().getPicture());
     }
 
     private void clearBckgroundImage(){
@@ -219,36 +217,5 @@ public class ActivityQuizz extends AppCompatActivity {
 
     private void finishQuizz(){
         finish();
-    }
-
-
-    class InitializePhoto extends AsyncTask<Integer, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Integer... posMin) {
-            try {
-                Log.e("InitializePhoto: Quizz","starting");
-                studentManager.getAllStudents().get(nb1).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb2).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb3).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb4).getPhoto().getPictureFromHttp();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            super.onPostExecute(aBoolean);
-
-            image1.setImageDrawable(studentManager.getAllStudents().get(nb1).getPhoto().getPicture());
-            image2.setImageDrawable(studentManager.getAllStudents().get(nb2).getPhoto().getPicture());
-            image3.setImageDrawable(studentManager.getAllStudents().get(nb3).getPhoto().getPicture());
-            image4.setImageDrawable(studentManager.getAllStudents().get(nb4).getPhoto().getPicture());
-
-        }
     }
 }

@@ -27,6 +27,12 @@ public class QuizzFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_quizz, container, false);
 
+        for (Student student : MainActivity.studentManager.getAllStudents()){
+            if (student.getPhoto().getPicture() != null){
+                MainActivity.studentWithPhoto.add(student);
+            }
+        }
+
         Button b = (Button)v.findViewById(R.id.buttonStarQuizz);
         b.setOnClickListener(new View.OnClickListener() {
             @Override

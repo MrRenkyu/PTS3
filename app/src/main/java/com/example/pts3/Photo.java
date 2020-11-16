@@ -18,7 +18,7 @@ import java.net.URLConnection;
  */
 public class Photo implements Serializable {
 
-    private Drawable picture;
+    private Drawable picture = null;
     private String numStudent;
 
     public Photo(String numStudent) throws IOException {
