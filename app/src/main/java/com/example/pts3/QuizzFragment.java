@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +24,7 @@ public class QuizzFragment extends Fragment {
     private Button groupButton;
     private Button modeButton;
     private Button modaliteButton;
+    private Switch aSwitch;
 
     private View actualView;
 
@@ -77,29 +80,34 @@ public class QuizzFragment extends Fragment {
         modeButton = actualView.findViewById(R.id.modeButton);
         modaliteButton = actualView.findViewById(R.id.modaliteButton);
 
-        // Set on click listener switch
-        //groupButton.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        switch (v.getId()) {
-        //            case R.id.groupButton:
-        //                Intent intentGrp = new Intent(inflater.getContext(), SettingGroup.class);
-        //                startActivity(intentGrp);
-        //                break;
-        //            case R.id.modeButton:
-        //                Intent intentMod = new Intent(inflater.getContext(), SettingMode.class);
-        //                startActivity(intentMod);
-        //                break;
-        //            case R.id.modaliteButton:
-        //                Intent intentModal = new Intent(inflater.getContext(), SettingModa.class);
-        //                startActivity(intentModal);
-        //                break;
-        //        }
-        //    }
-        //});
+        // Set on click listeners
+        groupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentGrp = new Intent(inflater.getContext(), SettingGroup.class);
+                startActivity(intentGrp);
+            }
+        });
+
+        modeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMod = new Intent(inflater.getContext(), SettingMode.class);
+                startActivity(intentMod);
+            }
+        });
+
+        modaliteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentModal = new Intent(inflater.getContext(), SettingModalite.class);
+                startActivity(intentModal);
+            }
+        });
 
         return actualView;
 
     }
+
 
 }

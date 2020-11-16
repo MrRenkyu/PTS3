@@ -27,7 +27,7 @@
         tools:layout_editor_absoluteX="0dp">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonFace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -38,36 +38,36 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/buttonNameAndFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:background="#FFFFFF"
             android:gravity="left|center_vertical"
             android:text="  Nom Prénom"
-            app:layout_constraintTop_toBottomOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFirstName"
             tools:layout_editor_absoluteX="0dp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:background="#FFFFFF"
             android:gravity="left|center_vertical"
             android:text="  Prénom"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/buttonName"
             tools:layout_editor_absoluteX="0dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:background="#FFFFFF"
             android:gravity="left|center_vertical"
             android:text="  Nom"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFace"
             tools:layout_editor_absoluteX="0dp" />
 
 
