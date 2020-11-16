@@ -43,6 +43,8 @@ public class ActivityQuizz extends AppCompatActivity {
     private boolean canNext = false;
     private boolean isFinish = false;
 
+    private boolean wait = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,10 +247,27 @@ public class ActivityQuizz extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            image1.setImageDrawable(studentArrayList.get(nb1).getPhoto().getPicture());
-            image2.setImageDrawable(studentArrayList.get(nb2).getPhoto().getPicture());
-            image3.setImageDrawable(studentArrayList.get(nb3).getPhoto().getPicture());
-            image4.setImageDrawable(studentArrayList.get(nb4).getPhoto().getPicture());
+            if (studentArrayList.get(nb1).getPhoto().getPicture() != null)
+                image1.setImageDrawable(studentArrayList.get(nb1).getPhoto().getPicture());
+            else
+                nb1 = 0;
+
+            if (studentArrayList.get(nb2).getPhoto().getPicture() != null)
+                image2.setImageDrawable(studentArrayList.get(nb2).getPhoto().getPicture());
+            else
+                nb2 = 0;
+
+            if (studentArrayList.get(nb3).getPhoto().getPicture() != null)
+                image3.setImageDrawable(studentArrayList.get(nb3).getPhoto().getPicture());
+            else
+                nb3 = 0;
+
+            if (studentArrayList.get(nb4).getPhoto().getPicture() != null)
+                image4.setImageDrawable(studentArrayList.get(nb4).getPhoto().getPicture());
+            else
+                nb4 = 0;
+
+            wait = false;
         }
     }
 }
