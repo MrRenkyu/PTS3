@@ -114,47 +114,56 @@ public class ActivityQuizz extends AppCompatActivity {
 
     private void setRandomImage(){
         int max = studentArrayList.size();
-        nb1 = random.nextInt(max);
+        while (nb1 == 0 || nb2 == 0 || nb3 == 0 || nb4 == 0) {
 
-        do {
-            nb2 = random.nextInt(max);
-        }while (nb1 == nb2);
+            if (nb1 == 0)
+                nb1 = random.nextInt(max);
 
-        do {
-            nb3 = random.nextInt(max);
-        }while (nb1 == nb3 || nb2 == nb3);
+            if(nb2 == 0) {
+                do {
+                    nb2 = random.nextInt(max);
+                } while (nb1 == nb2);
+            }
 
-        do {
-            nb4 = random.nextInt(max);
-        }while (nb1 == nb4 || nb2 == nb4 || nb3 == nb4);
+            if(nb3 == 0) {
+                do {
+                    nb3 = random.nextInt(max);
+                } while (nb1 == nb3 || nb2 == nb3);
+            }
 
-        int rand = random.nextInt(4);
-        int imageToFInd = 0;
-        switch (rand){
-            case 0:
-                imageToFInd = nb1;
-                rightImage = 1;
-                break;
-            case 1:
-                imageToFInd = nb2;
-                rightImage = 2;
-                break;
-            case 2:
-                imageToFInd = nb3;
-                rightImage = 3;
-                break;
-            case 3:
-                imageToFInd = nb4;
-                rightImage = 4;
-                break;
+            if(nb4 == 0) {
+                do {
+                    nb4 = random.nextInt(max);
+                } while (nb1 == nb4 || nb2 == nb4 || nb3 == nb4);
+            }
+
+            int rand = random.nextInt(4);
+            int imageToFInd = 0;
+            switch (rand) {
+                case 0:
+                    imageToFInd = nb1;
+                    rightImage = 1;
+                    break;
+                case 1:
+                    imageToFInd = nb2;
+                    rightImage = 2;
+                    break;
+                case 2:
+                    imageToFInd = nb3;
+                    rightImage = 3;
+                    break;
+                case 3:
+                    imageToFInd = nb4;
+                    rightImage = 4;
+                    break;
+            }
+
+            String txt = "Qui est " + studentArrayList.get(imageToFInd).getFirstName()
+                    + " " + studentArrayList.get(imageToFInd).getLastName() + " ?";
+            textViewPerson.setText(txt);
+
+            new InitializePhoto().execute();
         }
-
-        String txt = "Qui est " + studentArrayList.get(imageToFInd).getFirstName()
-                + " " + studentArrayList.get(imageToFInd).getLastName() + " ?";
-        textViewPerson.setText(txt);
-
-        new InitializePhoto().execute();
-
     }
 
     private void clearBckgroundImage(){
@@ -166,6 +175,10 @@ public class ActivityQuizz extends AppCompatActivity {
 
     private void newQuizz(){
         setOnClickImage();
+        nb1 = 0;
+        nb2 = 0;
+        nb3 = 0;
+        nb4 = 0;
         setRandomImage();
         clearBckgroundImage();
         canNext = false;
