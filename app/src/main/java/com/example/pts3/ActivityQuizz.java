@@ -2,15 +2,9 @@ package com.example.pts3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +19,7 @@ public class ActivityQuizz extends AppCompatActivity {
     private Random random = new Random();
 
     //private ArrayList<Student> studentArrayList = new ArrayList<>();
-    private StudentManager studentManager;
+    private ArrayList<Student> studentArrayList = new ArrayList<>();
     private int nbQuizzLeft;
 
     private ImageView image1;
@@ -53,7 +47,7 @@ public class ActivityQuizz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
-        studentManager = MainActivity.studentManager;
+        studentArrayList = MainActivity.studentWithPhoto;
         nbQuizzLeft = getIntent().getIntExtra("nbQuizz",1);
 
         image1 = this.findViewById(R.id.imageView);
@@ -119,7 +113,7 @@ public class ActivityQuizz extends AppCompatActivity {
     }
 
     private void setRandomImage(){
-        int max = studentManager.getAllStudents().size();
+        int max = studentArrayList.size();
         nb1 = random.nextInt(max);
 
         do {
@@ -155,8 +149,8 @@ public class ActivityQuizz extends AppCompatActivity {
                 break;
         }
 
-        String txt = "Qui est " + studentManager.getAllStudents().get(imageToFInd).getFirstName()
-                + " " + studentManager.getAllStudents().get(imageToFInd).getLastName() + " ?";
+        String txt = "Qui est " + studentArrayList.get(imageToFInd).getFirstName()
+                + " " + studentArrayList.get(imageToFInd).getLastName() + " ?";
         textViewPerson.setText(txt);
 
         new InitializePhoto().execute();
@@ -225,10 +219,10 @@ public class ActivityQuizz extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Integer... posMin) {
             try {
-                studentManager.getAllStudents().get(nb1).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb2).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb3).getPhoto().getPictureFromHttp();
-                studentManager.getAllStudents().get(nb4).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb1).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb2).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb3).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb4).getPhoto().getPictureFromHttp();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -238,10 +232,10 @@ public class ActivityQuizz extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            image1.setImageDrawable(studentManager.getAllStudents().get(nb1).getPhoto().getPicture());
-            image2.setImageDrawable(studentManager.getAllStudents().get(nb2).getPhoto().getPicture());
-            image3.setImageDrawable(studentManager.getAllStudents().get(nb3).getPhoto().getPicture());
-            image4.setImageDrawable(studentManager.getAllStudents().get(nb4).getPhoto().getPicture());
+            image1.setImageDrawable(studentArrayList.get(nb1).getPhoto().getPicture());
+            image2.setImageDrawable(studentArrayList.get(nb2).getPhoto().getPicture());
+            image3.setImageDrawable(studentArrayList.get(nb3).getPhoto().getPicture());
+            image4.setImageDrawable(studentArrayList.get(nb4).getPhoto().getPicture());
         }
     }
 }
