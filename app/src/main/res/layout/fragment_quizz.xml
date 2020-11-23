@@ -1,189 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8B8B8"
+    android:background="#2A9D8F"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="QuizzFragment">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/plain_text_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/textViewError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@android:color/holo_red_dark"
-            android:textStyle="bold"
-            android:visibility="invisible" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonStarQuizz"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="Lancer le Quizz"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/text_notifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/maven_pro_bold"
         android:gravity="center"
         android:text="Quizz"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="#E9C46A"
+        android:textSize="50dp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint"
-        android:layout_width="0dp"
-        android:layout_height="389dp"
-        android:background="#F1EFEF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
-        app:layout_constraintVertical_bias="0.047">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/maven_pro_bold"
+        android:paddingLeft="20dp"
+        android:text="Quel groupe ?"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="   Quel groupe ?"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E9C46A">
 
-        <Button
-            android:id="@+id/groupButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#FFFFFF"
-            android:gravity="right|center_vertical"
-            android:text="TDX > "
-            android:textColor="#8F7F7F"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="   Que faut-il trouver ?"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/groupButton" />
-
-        <Button
-            android:id="@+id/modeButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#FFFFFF"
-            android:gravity="right|center_vertical"
-            android:text="typeQuiz > "
-            android:textColor="#8F7F7F"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <Button
-            android:id="@+id/modaliteButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#FFFFFF"
-            android:gravity="right|center_vertical"
-            android:text="modalitéJeu > "
-            android:textColor="#8F7F7F"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <Spinner
+            android:id="@+id/spinner2"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="1dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:layout_constraintTop_toBottomOf="@+id/modeButton"
-            tools:layout_editor_absoluteX="0dp">
+            android:layout_height="50dp" />
+    </RelativeLayout>
 
-            <Switch
-                android:id="@+id/questionsHasardSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:gravity="center"
-                android:shadowColor="#BC9696"
-                android:text="Tous les types de questions possibles au hasard"
-                android:textColorHighlight="#DC1B1B"
-                android:textColorLink="#D378E3"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-        </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/maven_pro_bold"
+        android:paddingLeft="20dp"
+        android:text="Nombre de questions ?"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="0dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E9C46A">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RL_unlimited"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="right">
+
+        <Switch
+            android:id="@+id/SW_unlimitedQuestion"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="   Quelle modalité de jeu ?"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+            android:fontFamily="@font/maven_pro_bold"
+            android:gravity="center"
+            android:shadowColor="#BC9696"
+            android:text="Continué tant qu'il n'y a pas d'erreur"
+            android:textColor="#FFFCFC"
+            android:textColorHighlight="#DC1B1B"
+            android:textColorLink="#D378E3" />
+    </RelativeLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/maven_pro_bold"
+        android:paddingLeft="20dp"
+        android:text="Quelle modalité de jeu ?"
+        android:textColor="#EFEFEF"
+        android:textSize="24sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E9C46A">
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RL_allTypeOfQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="right">
+
+        <Switch
+            android:id="@+id/questionsHasardSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/maven_pro_bold"
+            android:gravity="center"
+            android:shadowColor="#BC9696"
+            android:text="Tous les types de questions possibles au hasard"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#DC1B1B"
+            android:textColorLink="#D378E3" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/buttonCommencer"
-        android:layout_width="140dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:background="#F1EFEF"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="#E9C46A"
+        android:fontFamily="@font/maven_pro_bold"
         android:text="Commencer"
+        android:textColor="#264653"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
