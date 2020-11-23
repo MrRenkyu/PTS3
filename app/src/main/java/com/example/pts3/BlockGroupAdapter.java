@@ -1,10 +1,13 @@
 package com.example.pts3;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +28,7 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
 
         public TextView mGroupName;
         public TextView mStudentNumber_tv;
+        public ImageView mfleche;
 
 
         public Viewholder(@NonNull View itemView) {
@@ -32,6 +36,7 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
 
             mGroupName = (TextView) itemView.findViewById(R.id.groupName_tv);
             mStudentNumber_tv = (TextView) itemView.findViewById(R.id.studentNumber_tv);
+            mfleche = (ImageView) itemView.findViewById(R.id.fleche);
         }
     }
 
@@ -59,9 +64,11 @@ public class BlockGroupAdapter extends RecyclerView.Adapter<BlockGroupAdapter.Vi
         textViewNumStudent.setText("("+ blockGroup.getNbEleve()+" étudiants)");
 
         int tabtextViewGroupName = blockGroup.getNbTab();
+        int tabtextViewNumStudent = blockGroup.getNbTab();
         textViewGroupName.setX(50*tabtextViewGroupName+25);
+        textViewNumStudent.setX(50*tabtextViewNumStudent+25);
 
-        holder.mStudentNumber_tv.setOnClickListener(new View.OnClickListener() {
+        holder.mfleche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
