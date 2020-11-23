@@ -6,13 +6,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.EditText;
+=======
+import android.widget.Switch;
+>>>>>>> master
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
+=======
+import java.util.zip.Inflater;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link QuizzFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class QuizzFragment extends Fragment {
+
+    // TODO: Rename modaliteButton name, find better description
+    private Button groupButton;
+    private Button modeButton;
+    private Button modaliteButton;
+    private Switch aSwitch;
+
+    private View actualView;
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+>>>>>>> master
 
 public class QuizzFragment extends Fragment {
 
@@ -23,8 +51,9 @@ public class QuizzFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         View v = inflater.inflate(R.layout.fragment_quizz, container, false);
 
         for (Student student : MainActivity.studentManager.getAllStudents()){
@@ -60,5 +89,45 @@ public class QuizzFragment extends Fragment {
         });
 
         return v;
+=======
+
+        // Inflate the layout for this fragment
+        actualView = inflater.inflate(R.layout.fragment_quizz, container, false);
+
+        // Find view by Id
+        groupButton = actualView.findViewById(R.id.groupButton);
+        modeButton = actualView.findViewById(R.id.modeButton);
+        modaliteButton = actualView.findViewById(R.id.modaliteButton);
+
+        // Set on click listeners
+        groupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentGrp = new Intent(inflater.getContext(), SettingGroup.class);
+                startActivity(intentGrp);
+            }
+        });
+
+        modeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMod = new Intent(inflater.getContext(), SettingMode.class);
+                startActivity(intentMod);
+            }
+        });
+
+        modaliteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentModal = new Intent(inflater.getContext(), SettingModalite.class);
+                startActivity(intentModal);
+            }
+        });
+
+        return actualView;
+
+>>>>>>> master
     }
+
+
 }
