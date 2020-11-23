@@ -136,7 +136,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
 
     public void updateImage(int pos) {
-        Log.e("updateImge",pos+" position du curseur "+mItemPersonList.size()+" size of actual liste");
+        Log.e("updateImage",pos+" position du curseur "+mItemPersonList.size()+" size of actual liste");
         if(pos < mItemPersonList.size()) {
             if (mItemPersonList.get(pos).getItemPersonViewHolder() != null) {
                 Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();

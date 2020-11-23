@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     static Context applicationContext;
     static StudentManager studentManager;
     boolean queryEnded = true;
+    static public ArrayList<Student> studentWithPhoto = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aBoolean);
 
         }
+    }
+
+    public  static Context getContext(){
+        return applicationContext;
     }
 
 }

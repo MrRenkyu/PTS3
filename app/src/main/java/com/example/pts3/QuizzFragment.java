@@ -6,11 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
+import android.widget.EditText;
+=======
 import android.widget.Switch;
+>>>>>>> master
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+
+=======
 import java.util.zip.Inflater;
 
 /**
@@ -32,45 +40,56 @@ public class QuizzFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+>>>>>>> master
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class QuizzFragment extends Fragment {
 
-    public QuizzFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment QuizzFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static QuizzFragment newInstance(String param1, String param2) {
-        QuizzFragment fragment = new QuizzFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
+        View v = inflater.inflate(R.layout.fragment_quizz, container, false);
+
+        for (Student student : MainActivity.studentManager.getAllStudents()){
+            if (student.getPhoto().getPicture() != null){
+                MainActivity.studentWithPhoto.add(student);
+            }
+        }
+
+        Button b = (Button)v.findViewById(R.id.buttonStarQuizz);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View parent = (View)v.getParent();
+                EditText textNbQuizz = parent.findViewById(R.id.plain_text_input);
+                TextView textViewError = parent.findViewById(R.id.textViewError);
+
+                Intent intent = new Intent(MainActivity.getContext(), ActivityQuizz.class);
+
+                String text = textNbQuizz.getText().toString().trim();
+                if (text.length() > 0){
+                    int nbQuizz = Integer.parseInt(text);
+                    if( nbQuizz > 0){
+                        intent.putExtra("nbQuizz", nbQuizz);
+                        textViewError.setVisibility(View.INVISIBLE);
+                        startActivity(intent);
+                    }
+                }else{
+                    textViewError.setText("Veuillez renseigner le nombre de Quizz.");
+                    textViewError.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        return v;
+=======
 
         // Inflate the layout for this fragment
         actualView = inflater.inflate(R.layout.fragment_quizz, container, false);
@@ -107,6 +126,7 @@ public class QuizzFragment extends Fragment {
 
         return actualView;
 
+>>>>>>> master
     }
 
 

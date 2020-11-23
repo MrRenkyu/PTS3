@@ -1,0 +1,273 @@
+package com.example.pts3;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class ActivityQuizz extends AppCompatActivity {
+
+    private Random random = new Random();
+
+    //private ArrayList<Student> studentArrayList = new ArrayList<>();
+    private ArrayList<Student> studentArrayList = new ArrayList<>();
+    private int nbQuizzLeft;
+
+    private ImageView image1;
+    private ImageView image2;
+    private ImageView image3;
+    private ImageView image4;
+
+    private int nb1,nb2,nb3,nb4;
+
+    private TextView textViewPerson;
+    private TextView textViewNbQuizzLeft;
+    private TextView textViewSuccess;
+
+    private Button buttonValider;
+
+    private int selectedImage = 0;
+    private int rightImage = 0;
+
+    private int nbBadAnswer = 0;
+
+    private boolean canNext = false;
+    private boolean isFinish = false;
+
+    private boolean wait = true;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_quizz);
+        studentArrayList = MainActivity.studentWithPhoto;
+        nbQuizzLeft = getIntent().getIntExtra("nbQuizz",1);
+
+        image1 = this.findViewById(R.id.imageView);
+        image2 = this.findViewById(R.id.imageView2);
+        image3 = this.findViewById(R.id.imageView3);
+        image4 = this.findViewById(R.id.imageView4);
+
+        textViewPerson = this.findViewById(R.id.textViewPerson);
+        textViewNbQuizzLeft = this.findViewById(R.id.textViewNbQuizzLeft);
+        textViewSuccess = this.findViewById(R.id.textViewSuccess);
+
+        textViewNbQuizzLeft.setText("Quizz restant : " + nbQuizzLeft);
+
+        buttonValider = this.findViewById(R.id.buttonValider);
+
+        newQuizz();
+    }
+
+    private void setOnClickImage(){
+        image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image1.setBackgroundColor(Color.argb(100,0, 255, 0));
+                image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                selectedImage = 1;
+            }
+        });
+
+        image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image2.setBackgroundColor(Color.argb(100,0, 255, 0));
+                image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                selectedImage = 2;
+            }
+        });
+
+        image3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image3.setBackgroundColor(Color.argb(100,0, 255, 0));
+                image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                selectedImage = 3;
+            }
+        });
+
+        image4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image4.setBackgroundColor(Color.argb(100,0, 255, 0));
+                image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
+                selectedImage = 4;
+            }
+        });
+    }
+
+    private void setRandomImage(){
+        int max = studentArrayList.size();
+        while (nb1 == 0 || nb2 == 0 || nb3 == 0 || nb4 == 0) {
+
+            if (nb1 == 0)
+                nb1 = random.nextInt(max);
+
+            if(nb2 == 0) {
+                do {
+                    nb2 = random.nextInt(max);
+                } while (nb1 == nb2);
+            }
+
+            if(nb3 == 0) {
+                do {
+                    nb3 = random.nextInt(max);
+                } while (nb1 == nb3 || nb2 == nb3);
+            }
+
+            if(nb4 == 0) {
+                do {
+                    nb4 = random.nextInt(max);
+                } while (nb1 == nb4 || nb2 == nb4 || nb3 == nb4);
+            }
+
+            int rand = random.nextInt(4);
+            int imageToFInd = 0;
+            switch (rand) {
+                case 0:
+                    imageToFInd = nb1;
+                    rightImage = 1;
+                    break;
+                case 1:
+                    imageToFInd = nb2;
+                    rightImage = 2;
+                    break;
+                case 2:
+                    imageToFInd = nb3;
+                    rightImage = 3;
+                    break;
+                case 3:
+                    imageToFInd = nb4;
+                    rightImage = 4;
+                    break;
+            }
+
+            String txt = "Qui est " + studentArrayList.get(imageToFInd).getFirstName()
+                    + " " + studentArrayList.get(imageToFInd).getLastName() + " ?";
+            textViewPerson.setText(txt);
+
+            new InitializePhoto().execute();
+        }
+    }
+
+    private void clearBckgroundImage(){
+        image2.setBackgroundColor(Color.argb(0, 0,  0, 0));
+        image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
+    }
+
+    private void newQuizz(){
+        setOnClickImage();
+        nb1 = 0;
+        nb2 = 0;
+        nb3 = 0;
+        nb4 = 0;
+        setRandomImage();
+        clearBckgroundImage();
+        canNext = false;
+        buttonValider.setText("VALIDER");
+    }
+
+    public void clickValider(View view) {
+        if (selectedImage == 0 && !canNext){
+            textViewSuccess.setVisibility(View.VISIBLE);
+            textViewSuccess.setText("Veuillez sélectionner une photo.");
+            return;
+        }
+
+        if (isFinish)
+            finishQuizz();
+
+        if (canNext){
+            if (nbQuizzLeft == 0){
+                textViewSuccess.setText("Vous avez fait " + nbBadAnswer + " erreurs");
+                textViewPerson.setVisibility(View.INVISIBLE);
+                buttonValider.setText("TERMINER");
+                isFinish = true;
+                return;
+            }
+            nbQuizzLeft -= 1;
+            textViewNbQuizzLeft.setText("Quizz restant : " + nbQuizzLeft);
+            textViewSuccess.setVisibility(View.INVISIBLE);
+            newQuizz();
+        }else{
+            if (rightImage == selectedImage){
+                textViewSuccess.setText("Félicitation !");
+            }else{
+                textViewSuccess.setText("Mauvaise réponse !");
+                nbBadAnswer += 1;
+            }
+            textViewSuccess.setVisibility(View.VISIBLE);
+            canNext = true;
+            selectedImage = 0;
+            buttonValider.setText("SUIVANT");
+        }
+
+    }
+
+    private void finishQuizz(){
+        finish();
+    }
+
+
+    class InitializePhoto extends AsyncTask<Integer, Void, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Integer... posMin) {
+            try {
+                studentArrayList.get(nb1).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb2).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb3).getPhoto().getPictureFromHttp();
+                studentArrayList.get(nb4).getPhoto().getPictureFromHttp();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (studentArrayList.get(nb1).getPhoto().getPicture() != null)
+                image1.setImageDrawable(studentArrayList.get(nb1).getPhoto().getPicture());
+            else
+                nb1 = 0;
+
+            if (studentArrayList.get(nb2).getPhoto().getPicture() != null)
+                image2.setImageDrawable(studentArrayList.get(nb2).getPhoto().getPicture());
+            else
+                nb2 = 0;
+
+            if (studentArrayList.get(nb3).getPhoto().getPicture() != null)
+                image3.setImageDrawable(studentArrayList.get(nb3).getPhoto().getPicture());
+            else
+                nb3 = 0;
+
+            if (studentArrayList.get(nb4).getPhoto().getPicture() != null)
+                image4.setImageDrawable(studentArrayList.get(nb4).getPhoto().getPicture());
+            else
+                nb4 = 0;
+
+            wait = false;
+        }
+    }
+}
