@@ -10,27 +10,29 @@
         android:id="@+id/tabBar"
         android:layout_width="409dp"
         android:layout_height="0dp"
+        android:background="#264653"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabEtudiant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabEtudiant"
             android:text="Etudiant" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabGroupes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabGroupes"
             android:text="Groupes" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabQuizz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tabQuizz"
             android:text="Quizz" />
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

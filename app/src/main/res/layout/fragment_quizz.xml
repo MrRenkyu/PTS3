@@ -18,7 +18,7 @@
         android:fontFamily="@font/maven_pro_bold"
         android:gravity="center"
         android:text="Quizz"
-        android:textColor="#E9C46A"
+        android:textColor="#E76F51"
         android:textSize="50dp" />
 
     <TextView

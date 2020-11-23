@@ -21,14 +21,19 @@ tools:context=".GroupDetailActivity">
             android:id="@+id/TV_groupName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#264653"
+            android:fontFamily="@font/maven_pro_bold"
             android:gravity="center"
             android:text="Etudiants"
+            android:textColor="#FFFFFF"
             android:textSize="36sp" />
 
         <SearchView
             android:id="@+id/searchView_GroupDetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#E9C46A"
+            android:inputType="text">
 
         </SearchView>
 
@@ -39,7 +44,7 @@ tools:context=".GroupDetailActivity">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#FFFFFF" />
+        android:background="#264653" />
 </LinearLayout>
 
 </FrameLayout>

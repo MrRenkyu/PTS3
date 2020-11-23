@@ -4,6 +4,7 @@
     android:id="@+id/layoutGroupBlock"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#2A9D8F"
     android:orientation="vertical"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
@@ -20,7 +21,9 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:fontFamily="@font/maven_pro_bold"
             android:text="INFO1"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -30,7 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="0"
+            android:fontFamily="@font/maven_pro_bold"
             android:gravity="right"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -39,6 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="6px"
         android:layout_weight="0"
-        android:background="#9A9A9A" />
+        android:background="#E76F51" />
 
 </LinearLayout>

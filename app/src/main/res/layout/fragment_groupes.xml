@@ -17,23 +17,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:background="#C5C3C3"
+            android:background="#264653"
+            android:fontFamily="@font/maven_pro_bold"
             android:gravity="center"
             android:text="Groupes"
+            android:textColor="#FFFFFF"
             android:textSize="36sp" />
 
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#C5C3C3">
+            android:background="#E9C46A">
 
         </SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBlockGroup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#264653">
 
         </androidx.recyclerview.widget.RecyclerView>
 

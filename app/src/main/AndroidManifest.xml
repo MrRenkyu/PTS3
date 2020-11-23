@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityQuizz"></activity>
-        <activity android:name=".SettingModalite"></activity>
-        <activity android:name=".SettingMode" />
-        <activity android:name=".SettingGroup" />
         <activity android:name=".GroupDetailActivity" />
         <activity android:name=".StudentHomePage" />
         <activity android:name=".MainActivity">

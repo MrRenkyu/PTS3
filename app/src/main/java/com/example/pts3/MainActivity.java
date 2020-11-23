@@ -1,14 +1,18 @@
 package com.example.pts3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,9 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         TabLayout tabLayout = findViewById(R.id.tabBar);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#E9C46A"));
         TabItem tabEtudiant = findViewById(R.id.tabEtudiant);
+        setStyletabLayout(tabLayout,"Etudiant",0);
         TabItem tabGroupes = findViewById(R.id.tabGroupes);
+        setStyletabLayout(tabLayout,"Groupes",1);
         TabItem tabQuizz = findViewById(R.id.tabQuizz);
+        setStyletabLayout(tabLayout,"Quizz",2);
         final ViewPager viewPager = findViewById(R.id.viewPager);
 
         PagerAdapter pagerAdapter = new
@@ -70,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setStyletabLayout(TabLayout tabLayout,String text,int index) {
+        TextView tamp = new TextView(this);
+        tamp.setText(text);
+        tamp.setGravity(Gravity.CENTER);
+        tamp.setTextColor(Color.parseColor("#E9C46A"));
+        Typeface typeface = ResourcesCompat.getFont(this,R.font.maven_pro_bold);
+        tamp.setTypeface(typeface);
+        tabLayout.getTabAt(index).setCustomView(tamp);
     }
 
 
