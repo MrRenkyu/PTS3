@@ -1,9 +1,8 @@
-package com.example.pts3;
+package com.example.pts3.Manage_Student;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupTP implements ListStudent {
+public class GroupTP implements ListStudent{
 
     private String name;
     private GroupTD groupTD;

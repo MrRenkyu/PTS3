@@ -4,6 +4,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.pts3.Group_fragment.GroupesFragment;
+import com.example.pts3.Quizz_fragment.QuizzFragment;
+import com.example.pts3.Student_fragment.EtudiantsFragment;
+
 public class PagerAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;

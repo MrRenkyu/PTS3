@@ -8,7 +8,7 @@
     android:background="#2A9D8F"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="QuizzFragment">
+    tools:context=".Quizz_fragment.QuizzFragment">
 
     <TextView
         android:id="@+id/text_notifications"

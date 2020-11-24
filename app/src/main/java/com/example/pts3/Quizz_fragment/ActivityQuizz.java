@@ -1,4 +1,4 @@
-package com.example.pts3;
+package com.example.pts3.Quizz_fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.pts3.MainActivity;
+import com.example.pts3.R;
+import com.example.pts3.Manage_Student.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;

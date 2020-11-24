@@ -1,8 +1,7 @@
-package com.example.pts3;
+package com.example.pts3.Student_fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,15 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pts3.*;
+import com.example.pts3.Manage_Student.Photo;
+import com.example.pts3.Manage_Student.Student;
+import com.example.pts3.Manage_Student.StudentParam;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EtudiantsFragment extends Fragment {
 
@@ -48,7 +50,7 @@ public class EtudiantsFragment extends Fragment {
             }
         });
 
-        listStudent = MainActivity.studentManager.getAllStudents();
+        listStudent = MainActivity.getStudentManager().getAllStudents();
 
         mRecyclerView = actualView.findViewById(R.id.recyclerView);
         mAdapter = new ItemPersonAdapter(listStudent);
@@ -91,7 +93,7 @@ public class EtudiantsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                listStudent = MainActivity.studentManager.MatchingStudent(newText);
+                listStudent = MainActivity.getStudentManager().MatchingStudent(newText);
                 mAdapter = new ItemPersonAdapter(listStudent);
 
 

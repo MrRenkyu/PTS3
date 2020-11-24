@@ -1,10 +1,6 @@
-package com.example.pts3;
+package com.example.pts3.Group_fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,15 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
+import com.example.pts3.R;
+import com.example.pts3.Manage_Student.Student;
+import com.example.pts3.Manage_Student.StudentParam;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.ItemPersonViewHolder> implements Serializable {
+public class GroupDetailAdaptater extends RecyclerView.Adapter<GroupDetailAdaptater.GroupDetailAdaptaterHolder> implements Serializable {
     private ArrayList<Student> mItemPersonList;
     public OnItemClickListener mListener;
-    public ItemPersonViewHolder itemViewHolder;
-    private static EtudiantsFragment studentFragment;
+    public GroupDetailAdaptaterHolder itemViewHolder;
+    private static GroupDetailActivity groupDetailActivity;
 
     public interface OnItemClickListener {
         void onAddClick(int position);
@@ -36,7 +35,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     }
 
 
-    public static class ItemPersonViewHolder extends RecyclerView.ViewHolder implements Serializable {
+    public static class GroupDetailAdaptaterHolder extends RecyclerView.ViewHolder implements Serializable {
         public ImageView mImageView;
         public TextView firstName_tv;
         public ImageView mImageView2;
@@ -46,7 +45,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
         public TextView grTp_tv;
 
 
-        public ItemPersonViewHolder(View itemView, final OnItemClickListener listener) {
+        public GroupDetailAdaptaterHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imagePerson);
             firstName_tv = itemView.findViewById(R.id.firstName_tv);
@@ -56,44 +55,28 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
             grTp_tv = itemView.findViewById(R.id.grTp_tv);
             mImageView2 = itemView.findViewById(R.id.imageView19);
 
-            /*
-            mImageView2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onAddClick(position);
 
-                        }
-                    }
-
-                    
-                }
-            });
-
-             */
         }
     }
 
     @NonNull
     @Override
-    public ItemPersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GroupDetailAdaptaterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_person, parent, false);
-        itemViewHolder = new ItemPersonViewHolder(v, mListener);
+        itemViewHolder = new GroupDetailAdaptaterHolder(v, mListener);
         return itemViewHolder;
     }
 
-    public ItemPersonAdapter(ArrayList<Student> itemlist) {
+    public GroupDetailAdaptater(ArrayList<Student> itemlist) {
         mItemPersonList = itemlist;
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ItemPersonViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GroupDetailAdaptaterHolder holder, int position) {
         final Student currentItem = mItemPersonList.get(position);
 
-        currentItem.setItemPersonViewHolder(holder);
+        currentItem.setGroupDetailAdaptaterHolder(holder);
 
         ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) holder.mImageView.getLayoutParams();
         params.width = 175;
@@ -123,7 +106,7 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
                 b.putString(StudentParam.groupTP.toString(), currentItem.getGroupTP().getName());
 
 
-                studentFragment.startStudentHomePageActivity(b, currentItem.getPhoto());
+                groupDetailActivity.startStudentHomePageActivity(b, currentItem.getPhoto());
 
             }
         });
@@ -136,11 +119,11 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
 
 
     public void updateImage(int pos) {
-        Log.e("updateImage",pos+" position du curseur "+mItemPersonList.size()+" size of actual liste");
+        Log.e("updateImge",pos+" position du curseur, "+mItemPersonList.size()+" size of actual liste");
         if(pos < mItemPersonList.size()) {
-            if (mItemPersonList.get(pos).getItemPersonViewHolder() != null) {
+            if (mItemPersonList.get(pos).getGroupDetailAdaptaterHolder() != null) {
                 Drawable pictureOfStudent = mItemPersonList.get(pos).getPhoto().getPicture();
-                ImageView viewOfPicture = mItemPersonList.get(pos).getItemPersonViewHolder().mImageView;
+                ImageView viewOfPicture = mItemPersonList.get(pos).getGroupDetailAdaptaterHolder().mImageView;
                 if (pictureOfStudent != null) {
                     viewOfPicture.setImageDrawable(pictureOfStudent);
                     Log.e("update image", "picture of student n° " + mItemPersonList.get(pos).getFirstName());
@@ -161,10 +144,11 @@ public class ItemPersonAdapter extends RecyclerView.Adapter<ItemPersonAdapter.It
     }
 
 
-    public static void setStudentFragment(EtudiantsFragment StudentFragment) {
-        studentFragment = StudentFragment;
+    public static void setGroupDetailActivity(GroupDetailActivity groupDetailActivity) {
+        GroupDetailAdaptater.groupDetailActivity = groupDetailActivity;
     }
 }
+
 
 
 

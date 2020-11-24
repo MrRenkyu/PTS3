@@ -1,4 +1,4 @@
-package com.example.pts3;
+package com.example.pts3.Network_package;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

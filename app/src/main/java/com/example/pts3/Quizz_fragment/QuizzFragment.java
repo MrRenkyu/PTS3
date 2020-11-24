@@ -1,27 +1,19 @@
-package com.example.pts3;
+package com.example.pts3.Quizz_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
-
-import java.util.zip.Inflater;
+import com.example.pts3.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link QuizzFragment} factory method to
+ * Use the {@link Quizz_fragment} factory method to
  * create an instance of this fragment.
  */
 public class QuizzFragment extends Fragment {
@@ -42,7 +34,7 @@ public class QuizzFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_quizz, container, false);
         startButton = v.findViewById(R.id.buttonCommencer);
 
-        final Intent gameIntent = new Intent(inflater.getContext(),ActivityQuizz.class);
+        final Intent gameIntent = new Intent(inflater.getContext(), ActivityQuizz.class);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override

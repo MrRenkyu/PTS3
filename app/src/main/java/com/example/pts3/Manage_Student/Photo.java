@@ -1,10 +1,13 @@
-package com.example.pts3;
+package com.example.pts3.Manage_Student;
 
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 
 import androidx.core.content.ContextCompat;
+
+import com.example.pts3.MainActivity;
+import com.example.pts3.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +53,7 @@ public class Photo implements Serializable {
                 InputStream input = connector.getInputStream();
                 picture = Drawable.createFromStream(input, "src");
             }else{
-                picture = ContextCompat.getDrawable(MainActivity.applicationContext,R.drawable.user);
+                picture = ContextCompat.getDrawable(MainActivity.getContext(), R.drawable.user);
             }
 
         }

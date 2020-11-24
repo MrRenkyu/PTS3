@@ -1,4 +1,7 @@
-package com.example.pts3;
+package com.example.pts3.Manage_Student;
+
+import com.example.pts3.Group_fragment.GroupDetailAdaptater;
+import com.example.pts3.Student_fragment.ItemPersonAdapter;
 
 import java.io.IOException;
 import java.io.Serializable;

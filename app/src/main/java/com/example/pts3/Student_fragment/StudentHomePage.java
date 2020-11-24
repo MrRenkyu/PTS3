@@ -1,18 +1,18 @@
-package com.example.pts3;
+package com.example.pts3.Student_fragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.pts3.Manage_Student.StudentParam;
+import com.example.pts3.R;
 
 public class StudentHomePage extends AppCompatActivity {
 

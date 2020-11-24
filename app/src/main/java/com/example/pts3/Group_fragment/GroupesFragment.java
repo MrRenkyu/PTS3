@@ -1,8 +1,6 @@
-package com.example.pts3;
+package com.example.pts3.Group_fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
+import com.example.pts3.Manage_Student.GroupTD;
+import com.example.pts3.Manage_Student.GroupTP;
+import com.example.pts3.MainActivity;
+import com.example.pts3.Manage_Student.Promo;
+import com.example.pts3.R;
+import com.example.pts3.Manage_Student.Student;
+
 import java.util.ArrayList;
 
 /**
@@ -84,7 +87,7 @@ public class GroupesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_groupes, container, false);
-        groupDetailIntent = new Intent(inflater.getContext(),GroupDetailActivity.class);
+        groupDetailIntent = new Intent(inflater.getContext(), GroupDetailActivity.class);
         searchView = rootView.findViewById(R.id.searchView);
 
         searchView.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +99,7 @@ public class GroupesFragment extends Fragment {
 
         final ArrayList<BlockGroup> blockGroupsList = new ArrayList<BlockGroup>();
 
-        ArrayList<Promo> allPromos = MainActivity.studentManager.getAllPromos();
+        ArrayList<Promo> allPromos = MainActivity.getStudentManager().getAllPromos();
         Log.e("size of promo list", allPromos.size()+" promo");
         for (Promo eachPromo : allPromos){
             blockGroupsList.add(new BlockGroup(1, eachPromo.getName(), eachPromo.getNumberStudent(), eachPromo.getStudentList()));
@@ -150,7 +153,7 @@ public class GroupesFragment extends Fragment {
 
 
 
-    public void startGroupDetailActivity( ArrayList<Student> studentArrayList,String groupName){
+    public void startGroupDetailActivity(ArrayList<Student> studentArrayList, String groupName){
         GroupDetailActivity.setListStudent(studentArrayList);
         GroupDetailActivity.setGroupNameString(groupName);
         startActivity(groupDetailIntent);
