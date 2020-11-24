@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.ProfilEtudiant">
+    android:background="#2a9d8f"
+    tools:context=".Student_fragment.StudentHomePage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="501dp"
-        android:background="#F1EFEF"
+        android:background="#2A9D8F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -31,6 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#E9C46A"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -57,7 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
+            android:fontFamily="@font/maven_pro_bold"
             android:text="NOM"
+            android:textColor="#FFFFFF"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +72,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/maven_pro_bold"
             android:text="Prénom"
+            android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@+id/etuLastName"
             app:layout_constraintHorizontal_bias="0.473"
@@ -81,9 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="DUTx"
-            android:textColor="#E63333"
-            android:textSize="18sp"
+            android:textColor="#fb5607"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/etuGroupTD"
             app:layout_constraintTop_toTopOf="@+id/etuGroupTD" />
@@ -93,9 +100,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="TDx"
-            android:textColor="#B841C1"
-            android:textSize="18sp"
+            android:textColor="#ff006e"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,9 +115,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="TPGx"
-            android:textColor="#2437BC"
-            android:textSize="18sp"
+            android:textColor="#8338ec"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/etuGroupTD"
             app:layout_constraintTop_toTopOf="@+id/etuGroupTD" />
@@ -146,7 +155,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="100dp"
             android:layout_marginRight="100dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="number"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -155,7 +166,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="birth date"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="@+id/etuNumber"
             app:layout_constraintTop_toBottomOf="@+id/etuNumber" />
 
@@ -164,7 +177,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="bac"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="@+id/etuOriginSchool"
             app:layout_constraintTop_toBottomOf="@+id/etuOriginSchool" />
 
@@ -173,7 +188,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/maven_pro_medium"
+            android:shadowColor="#FFFFFF"
             android:text="school"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="@+id/etuBirthDate"
             app:layout_constraintTop_toBottomOf="@+id/etuBirthDate" />
 
@@ -183,7 +201,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="Numéro étudiant"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etuNumber"
             app:layout_constraintEnd_toStartOf="@+id/etuNumber" />
@@ -192,7 +212,9 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="Date d'anniversaire"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etuBirthDate"
             app:layout_constraintStart_toStartOf="@+id/textView13" />
@@ -201,7 +223,9 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="Lycée"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etuOriginSchool"
             app:layout_constraintStart_toStartOf="@+id/textView14" />
@@ -210,7 +234,9 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/maven_pro_medium"
             android:text="Baccalauréat"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etuBac"
             app:layout_constraintStart_toStartOf="@+id/textView15" />
