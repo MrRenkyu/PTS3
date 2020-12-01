@@ -39,4 +39,14 @@ public class Promo  implements ListStudent {
         }
         return studentList;
     }
+
+    @Override
+    public ArrayList<String> getNameOfGroupsAdChild() {
+        ArrayList<String> groupsAndChildName = new ArrayList<>();
+        groupsAndChildName.add(getName());
+        for(GroupTD grpTD : getGroupsTD()){
+           groupsAndChildName.addAll(grpTD.getNameOfGroupsAdChild());
+        }
+        return groupsAndChildName;
+    }
 }

@@ -45,4 +45,14 @@ public class GroupTD implements ListStudent {
         }
         return studentList;
     }
+
+    @Override
+    public ArrayList<String> getNameOfGroupsAdChild() {
+        ArrayList<String> groupsAndChildName = new ArrayList<>();
+        groupsAndChildName.add(getName());
+        for(GroupTP grpTP : getGroupsTP()) {
+            groupsAndChildName.addAll(grpTP.getNameOfGroupsAdChild());
+        }
+        return groupsAndChildName;
+    }
 }

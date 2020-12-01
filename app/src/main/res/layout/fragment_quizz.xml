@@ -38,7 +38,7 @@
         android:background="#E9C46A">
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/SPI_groups"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </RelativeLayout>
@@ -60,7 +60,7 @@
         android:background="#E9C46A">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/SPI_NbQuestions"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </RelativeLayout>
@@ -78,7 +78,7 @@
             android:fontFamily="@font/maven_pro_bold"
             android:gravity="center"
             android:shadowColor="#BC9696"
-            android:text="Continué tant qu'il n'y a pas d'erreur"
+            android:text="Continuer tant qu'il n'y a pas d'erreur"
             android:textColor="#FFFCFC"
             android:textColorHighlight="#DC1B1B"
             android:textColorLink="#D378E3" />
@@ -101,7 +101,7 @@
         android:background="#E9C46A">
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/SPI_GameMode"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </RelativeLayout>
@@ -113,7 +113,7 @@
         android:gravity="right">
 
         <Switch
-            android:id="@+id/questionsHasardSwitch"
+            android:id="@+id/SW_allTypeOfQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/maven_pro_bold"

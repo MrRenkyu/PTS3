@@ -110,6 +110,19 @@ public class StudentManager{
         return studentsList;
     }
 
+    public ArrayList<Student> getListStudentsByGroupName(String grpName){
+        for (Promo promo: promoList) {
+            if (promo.getName() == grpName) {  return promo.getStudentList(); }
+            for (GroupTD groupTD: promo.getGroupsTD()) {
+                if (promo.getName() == grpName) {  return promo.getStudentList(); }
+                for (GroupTP groupTP: groupTD.getGroupsTP()) {
+                    if (groupTP.getName() == grpName) {  return groupTP.getStudentList(); }
+                }
+            }
+        }
+        return null;
+    }
+
 
     public ArrayList<Promo> getAllPromos(){
         return promoList;
@@ -165,5 +178,13 @@ public class StudentManager{
         }
 
         return matchingListStudent;
+    }
+
+    public ArrayList<String> getEachGroupName(){
+        ArrayList<String> groupsName = new ArrayList<>();
+        for(Promo eachPromo : promoList){
+          groupsName.addAll(eachPromo.getNameOfGroupsAdChild());
+        }
+        return groupsName;
     }
 }

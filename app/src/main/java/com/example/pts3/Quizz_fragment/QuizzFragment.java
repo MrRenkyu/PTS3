@@ -2,23 +2,42 @@ package com.example.pts3.Quizz_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.Switch;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.pts3.MainActivity;
+import com.example.pts3.Manage_Student.GroupTP;
+import com.example.pts3.Manage_Student.ListStudent;
+import com.example.pts3.Manage_Student.Student;
 import com.example.pts3.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Quizz_fragment} factory method to
  * create an instance of this fragment.
  */
-public class QuizzFragment extends Fragment {
+public class QuizzFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private Button startButton;
+    private Spinner SPI_Groups;
+    private Spinner SPI_NbQUestion;
+    private Spinner SPI_GameMode;
+    private Switch SW_InfiniteQuestion;
+    private Switch SW_AllTypeOfQuestion;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,117 +52,72 @@ public class QuizzFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_quizz, container, false);
         startButton = v.findViewById(R.id.buttonCommencer);
+        SPI_Groups = v.findViewById(R.id.SPI_groups);
+        SPI_GameMode = v.findViewById(R.id.SPI_GameMode);
+        SPI_NbQUestion = v.findViewById(R.id.SPI_NbQuestions);
+        SW_InfiniteQuestion = v.findViewById(R.id.SW_unlimitedQuestion);
+        SW_AllTypeOfQuestion = v.findViewById(R.id.SW_allTypeOfQuestion);
 
-        final Intent gameIntent = new Intent(inflater.getContext(), ActivityQuizz.class);
+        ArrayList<String> listGroup = new ArrayList<>();
+        listGroup.add("groupe1");
+        listGroup.add("groupe2");
+        listGroup.add("groupe2");
+        listGroup.add("groupe3");
+
+
+
+        ArrayList<String> groups = MainActivity.getStudentManager().getEachGroupName();
+        SPI_Groups.setOnItemSelectedListener(this);
+        ArrayAdapter<String> dataAdapterGroups = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, groups);
+        dataAdapterGroups.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SPI_Groups.setAdapter(dataAdapterGroups);
+
+        ArrayList<Integer> nbQUestionList = new ArrayList<>();
+        for(int i=5; i<55; i=i+5){ nbQUestionList.add(i); }
+        SPI_NbQUestion.setOnItemSelectedListener(this);
+        ArrayAdapter<Integer> dataAdapterNbQuestions = new ArrayAdapter<Integer>(getContext(), android.R.layout.simple_spinner_item, nbQUestionList);
+        dataAdapterNbQuestions.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SPI_NbQUestion.setAdapter(dataAdapterNbQuestions);
+
+        ArrayList<GameMode> gameModeList = new ArrayList<>();
+        gameModeList.addAll(Arrays.asList(GameMode.values()));
+        SPI_GameMode.setOnItemSelectedListener(this);
+        ArrayAdapter<GameMode> dataAdapterGameMode = new ArrayAdapter<GameMode>(getContext(), android.R.layout.simple_spinner_item, gameModeList);
+        dataAdapterGameMode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SPI_GameMode.setAdapter(dataAdapterGameMode);
+
+
+
+
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(gameIntent);
+                //startActivity(gameIntent);
+                final Intent gameIntent = new Intent(getContext(), Activity_quizz_pick_photo.class);
+                gameIntent.getExtras().putString("groupName",SPI_Groups.getSelectedItem().toString());
+                if(SPI_GameMode.getSelectedItem().toString() == GameMode.FACE1_NAME4.getValue()){
+                    Log.e("startButton","gameMode: 1visage 4 noms");
+
+                }else if(SPI_GameMode.getSelectedItem().toString() == GameMode.FACES4_NAME1.getValue()){
+                    startActivity(gameIntent);
+                    Log.e("startButton","gameMode: 4visages 4noms");
+                }
             }
         });
         return v;
     }
 
 
-}
-/*
-    // TODO: Rename modaliteButton name, find better description
-    private Button groupButton;
-    private Button modeButton;
-    private Button modaliteButton;
-    private Switch aSwitch;
-
-    private View actualView;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        Log.e("QuizzFragment","new Interface");
-        View v = inflater.inflate(R.layout.fragment_quizz, container, false);
-
-        for (Student student : MainActivity.studentManager.getAllStudents()){
-            if (student.getPhoto().getPicture() != null){
-                MainActivity.studentWithPhoto.add(student);
-            }
-        }
-
-        Button b = (Button)v.findViewById(R.id.buttonStarQuizz);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View parent = (View)v.getParent();
-                EditText textNbQuizz = parent.findViewById(R.id.plain_text_input);
-                TextView textViewError = parent.findViewById(R.id.textViewError);
-
-                Intent intent = new Intent(MainActivity.getContext(), ActivityQuizz.class);
-
-                String text = textNbQuizz.getText().toString().trim();
-                if (text.length() > 0){
-                    int nbQuizz = Integer.parseInt(text);
-                    if( nbQuizz > 0){
-                        intent.putExtra("nbQuizz", nbQuizz);
-                        textViewError.setVisibility(View.INVISIBLE);
-                        startActivity(intent);
-                    }
-                }else{
-                    textViewError.setText("Veuillez renseigner le nombre de Quizz.");
-                    textViewError.setVisibility(View.VISIBLE);
-                }
-
-            }
-        });
-
-
-
-
-
-        // Find view by Id
-        groupButton = actualView.findViewById(R.id.groupButton);
-        modeButton = actualView.findViewById(R.id.modeButton);
-        modaliteButton = actualView.findViewById(R.id.modaliteButton);
-
-        // Set on click listeners
-        groupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentGrp = new Intent(inflater.getContext(), SettingGroup.class);
-                startActivity(intentGrp);
-            }
-        });
-
-        modeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentMod = new Intent(inflater.getContext(), SettingMode.class);
-                startActivity(intentMod);
-            }
-        });
-
-        modaliteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentModal = new Intent(inflater.getContext(), SettingModalite.class);
-                startActivity(intentModal);
-            }
-        });
-
-        return actualView;
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
 
 }
-
- */

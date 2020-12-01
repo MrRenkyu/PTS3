@@ -5,4 +5,5 @@ import java.util.ArrayList;
 public interface ListStudent {
 
     public ArrayList<Student> getStudentList();
+    public ArrayList<String> getNameOfGroupsAdChild();
 }

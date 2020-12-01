@@ -33,4 +33,11 @@ public class GroupTP implements ListStudent{
     public ArrayList<Student> getStudentList() {
         return students;
     }
+
+    @Override
+    public ArrayList<String> getNameOfGroupsAdChild() {
+        ArrayList<String> groupsAndChildName = new ArrayList<>();
+        groupsAndChildName.add(getName());
+        return groupsAndChildName;
+    }
 }
