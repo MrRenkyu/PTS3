@@ -6,46 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/quizzCurrentRoundTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:text="n"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameButton3"
-        app:layout_constraintVertical_bias="0.358" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="/"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/quizzCurrentRoundTextView"
-        app:layout_constraintStart_toEndOf="@+id/quizzCurrentRoundTextView"
-        app:layout_constraintTop_toTopOf="@+id/quizzCurrentRoundTextView" />
-
-    <TextView
-        android:id="@+id/quizzDurationTextView"
-        android:layout_width="17dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="n"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView22"
-        app:layout_constraintStart_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toTopOf="@+id/textView22" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewPhotoPerson1"
         android:layout_width="174dp"
@@ -101,23 +61,11 @@
         android:id="@+id/nameButton1"
         android:layout_width="118dp"
         android:layout_height="63dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
         android:text="name1"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewPhotoPerson1" />
-
-    <Button
-        android:id="@+id/nameButton4"
-        android:layout_width="118dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="168dp"
-        android:text="name4"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewPhotoPerson1" />
 
@@ -128,7 +76,7 @@
         android:text="name2"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.802"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nameButton1" />
 
@@ -136,7 +84,7 @@
         android:id="@+id/nameButton3"
         android:layout_width="118dp"
         android:layout_height="63dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="88dp"
         android:text="name3"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,17 +93,81 @@
         app:layout_constraintTop_toTopOf="@+id/nameButton1" />
 
     <Button
-        android:id="@+id/button14"
-        android:layout_width="102dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:layout_marginBottom="84dp"
+        android:id="@+id/nameButton4"
+        android:layout_width="118dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="128dp"
+        android:text="name4"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewPhotoPerson1" />
+
+
+    <Button
+        android:id="@+id/BT_nextQuizz_photo"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="36dp"
         android:background="#FFFFFF"
+        android:onClick="clickValider"
         android:text="Suivant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameButton4"
-        app:layout_constraintVertical_bias="0.983" />
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="24dp"
+        android:text="Choisissez une photo"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/BT_nextQuizz_photo"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/quizzCurrentRoundTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="24dp"
+        android:text="n"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/BT_nextQuizz_photo"
+        app:layout_constraintEnd_toStartOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="/"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/BT_nextQuizz_photo"
+        app:layout_constraintEnd_toStartOf="@+id/TV_maxQuestionQuizz" />
+
+    <TextView
+        android:id="@+id/TV_maxQuestionQuizz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="24dp"
+        android:text="n"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/BT_nextQuizz_photo"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

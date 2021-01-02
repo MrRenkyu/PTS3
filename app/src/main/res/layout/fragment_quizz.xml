@@ -78,7 +78,7 @@
             android:fontFamily="@font/maven_pro_bold"
             android:gravity="center"
             android:shadowColor="#BC9696"
-            android:text="Continuer tant qu'il n'y a pas d'erreur"
+            android:text="Continuer jusqu'à la première erreur"
             android:textColor="#FFFCFC"
             android:textColorHighlight="#DC1B1B"
             android:textColorLink="#D378E3" />

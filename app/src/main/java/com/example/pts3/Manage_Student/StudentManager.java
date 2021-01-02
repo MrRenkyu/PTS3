@@ -112,11 +112,11 @@ public class StudentManager{
 
     public ArrayList<Student> getListStudentsByGroupName(String grpName){
         for (Promo promo: promoList) {
-            if (promo.getName() == grpName) {  return promo.getStudentList(); }
+            if (promo.getName().equalsIgnoreCase(grpName)) {  return promo.getStudentList(); }
             for (GroupTD groupTD: promo.getGroupsTD()) {
-                if (promo.getName() == grpName) {  return promo.getStudentList(); }
+                if (promo.getName().equalsIgnoreCase(grpName)) {  return promo.getStudentList(); }
                 for (GroupTP groupTP: groupTD.getGroupsTP()) {
-                    if (groupTP.getName() == grpName) {  return groupTP.getStudentList(); }
+                    if (groupTP.getName().equalsIgnoreCase(grpName)) {  return groupTP.getStudentList(); }
                 }
             }
         }

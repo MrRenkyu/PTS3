@@ -1,19 +1,13 @@
 package com.example.pts3.Quizz_fragment;
 
-import android.app.Application;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pts3.MainActivity;
@@ -31,7 +25,10 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
 
 
     private ArrayList<Student> studentArrayList = new ArrayList<>();
+
     private int nbQuizzLeft;
+    private int nbQuizzTotal;
+    private int nbQuizzDone = 0;
 
     private ImageView image1;
     private ImageView image2;
@@ -41,8 +38,9 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
     private int nb1, nb2, nb3, nb4;
 
     private TextView textViewPerson;
-    private TextView textViewNbQuizzLeft;
-    private TextView textViewSuccess;
+    private TextView textViewNbQuizz;
+    private TextView textViewNbDone;
+    private TextView textViewInfo;
 
     private Button buttonValider;
 
@@ -60,10 +58,11 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_pick_photo);
-        studentArrayList = MainActivity.studentWithPhoto;
 
-        nbQuizzLeft = getIntent().getIntExtra("groupName", 1);
+        nbQuizzTotal = nbQuizzLeft = getIntent().getIntExtra("nbQuizz", 1);
         String GroupName = getIntent().getStringExtra("groupName");
+        studentArrayList = MainActivity.getStudentManager().getListStudentsByGroupName(GroupName);
+
 
         image1 = this.findViewById(R.id.imagePerson1);
         image2 = this.findViewById(R.id.imagePerson2);
@@ -71,10 +70,12 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
         image4 = this.findViewById(R.id.imagePerson4);
 
         textViewPerson = this.findViewById(R.id.TV_studentName);
-        textViewNbQuizzLeft = this.findViewById(R.id.TV_maxQuestionQuizz);
-        textViewSuccess = this.findViewById(R.id.quizzCurrentRoundTextView);
+        textViewNbQuizz = this.findViewById(R.id.TV_maxQuestionQuizz);
+        textViewNbDone = this.findViewById(R.id.quizzCurrentRoundTextView);
+        textViewInfo = this.findViewById(R.id.textViewInfo);
 
-        textViewNbQuizzLeft.setText("Quizz restant : " + nbQuizzLeft);
+        textViewNbQuizz.setText("" + nbQuizzTotal);
+        textViewNbDone.setText("" + nbQuizzDone);
 
         buttonValider = this.findViewById(R.id.BT_nextQuizz_photo);
 
@@ -202,8 +203,8 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
 
     public void clickValider(View view) {
         if (selectedImage == 0 && !canNext) {
-            textViewSuccess.setVisibility(View.VISIBLE);
-            textViewSuccess.setText("Veuillez sélectionner une photo.");
+            textViewInfo.setVisibility(View.VISIBLE);
+            textViewInfo.setText("Sélectionner une photo.");
             return;
         }
 
@@ -212,24 +213,25 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
 
         if (canNext) {
             if (nbQuizzLeft == 0) {
-                textViewSuccess.setText("Vous avez fait " + nbBadAnswer + " erreurs");
+                textViewInfo.setText("Vous avez fait " + nbBadAnswer + " erreurs");
                 textViewPerson.setVisibility(View.INVISIBLE);
                 buttonValider.setText("TERMINER");
                 isFinish = true;
                 return;
             }
+            nbQuizzDone += 1;
             nbQuizzLeft -= 1;
-            textViewNbQuizzLeft.setText("Quizz restant : " + nbQuizzLeft);
-            textViewSuccess.setVisibility(View.INVISIBLE);
+            textViewNbDone.setText("" + nbQuizzDone);
+            textViewInfo.setVisibility(View.INVISIBLE);
             newQuizz();
         } else {
             if (rightImage == selectedImage) {
-                textViewSuccess.setText("Félicitation !");
+                textViewInfo.setText("Félicitation !");
             } else {
-                textViewSuccess.setText("Mauvaise réponse !");
+                textViewInfo.setText("Mauvaise réponse !");
                 nbBadAnswer += 1;
             }
-            textViewSuccess.setVisibility(View.VISIBLE);
+            textViewInfo.setVisibility(View.VISIBLE);
             canNext = true;
             selectedImage = 0;
             buttonValider.setText("SUIVANT");

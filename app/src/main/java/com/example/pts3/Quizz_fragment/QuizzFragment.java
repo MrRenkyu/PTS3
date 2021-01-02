@@ -42,8 +42,6 @@ public class QuizzFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -93,16 +91,21 @@ public class QuizzFragment extends Fragment implements AdapterView.OnItemSelecte
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(gameIntent);
-                final Intent gameIntent = new Intent(getContext(), Activity_quizz_pick_photo.class);
-                gameIntent.getExtras().putString("groupName",SPI_Groups.getSelectedItem().toString());
+                Intent gameIntent = null;
                 if(SPI_GameMode.getSelectedItem().toString() == GameMode.FACE1_NAME4.getValue()){
+                    gameIntent = new Intent(getContext(), Activity_quizz_pick_name.class);
                     Log.e("startButton","gameMode: 1visage 4 noms");
 
                 }else if(SPI_GameMode.getSelectedItem().toString() == GameMode.FACES4_NAME1.getValue()){
-                    startActivity(gameIntent);
+                    gameIntent = new Intent(getContext(), Activity_quizz_pick_photo.class);
                     Log.e("startButton","gameMode: 4visages 4noms");
                 }
+                Bundle extras = new Bundle();
+                extras.putString("groupName", SPI_Groups.getSelectedItem().toString());
+                extras.putInt("nbQuizz", Integer.parseInt(SPI_NbQUestion.getSelectedItem().toString()));
+                gameIntent.putExtras(extras);
+                startActivity(gameIntent);
+
             }
         });
         return v;
