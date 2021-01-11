@@ -28,7 +28,7 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
 
     private int nbQuizzLeft;
     private int nbQuizzTotal;
-    private int nbQuizzDone = 0;
+    private int nbQuizzDone = 1;
 
     private ImageView image1;
     private ImageView image2;
@@ -59,7 +59,8 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_pick_photo);
 
-        nbQuizzTotal = nbQuizzLeft = getIntent().getIntExtra("nbQuizz", 1);
+        nbQuizzTotal = getIntent().getIntExtra("nbQuizz", 1);
+        nbQuizzLeft = nbQuizzTotal - 1;
         String GroupName = getIntent().getStringExtra("groupName");
         studentArrayList = MainActivity.getStudentManager().getListStudentsByGroupName(GroupName);
 
@@ -86,46 +87,98 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image1.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                image1.setBackgroundColor(Color.argb(100, 40, 156, 193));
                 image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 selectedImage = 1;
+                buttonValider.setVisibility(View.VISIBLE);
             }
         });
 
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image2.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                image2.setBackgroundColor(Color.argb(100, 40, 156, 193));
                 image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 selectedImage = 2;
+                buttonValider.setVisibility(View.VISIBLE);
             }
         });
 
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image3.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                image3.setBackgroundColor(Color.argb(100, 40, 156, 193));
                 image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image4.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 selectedImage = 3;
+                buttonValider.setVisibility(View.VISIBLE);
             }
         });
 
         image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image4.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                image4.setBackgroundColor(Color.argb(100, 40, 156, 193));
                 image1.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image3.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 image2.setBackgroundColor(Color.argb(0, 0, 0, 0));
                 selectedImage = 4;
+                buttonValider.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void colorImage(){
+        if(selectedImage == rightImage){
+            switch (selectedImage){
+                case 1:
+                    image1.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 2:
+                    image2.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 3:
+                    image3.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 4:
+                    image4.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+            }
+        }else {
+            switch (selectedImage) {
+                case 1:
+                    image1.setBackgroundColor(Color.argb(100, 255, 0, 0));
+                    break;
+                case 2:
+                    image2.setBackgroundColor(Color.argb(100, 255, 0, 0));
+                    break;
+                case 3:
+                    image3.setBackgroundColor(Color.argb(100, 255, 0, 0));
+                    break;
+                case 4:
+                    image4.setBackgroundColor(Color.argb(100, 255, 0, 0));
+                    break;
+            }
+            switch (rightImage) {
+                case 1:
+                    image1.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 2:
+                    image2.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 3:
+                    image3.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+                case 4:
+                    image4.setBackgroundColor(Color.argb(100, 0, 255, 0));
+                    break;
+            }
+        }
     }
 
     private void setRandomImage() {
@@ -199,6 +252,7 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
         clearBckgroundImage();
         canNext = false;
         buttonValider.setText("VALIDER");
+        buttonValider.setVisibility(View.INVISIBLE);
     }
 
     public void clickValider(View view) {
@@ -225,6 +279,7 @@ public class Activity_quizz_pick_photo extends AppCompatActivity {
             textViewInfo.setVisibility(View.INVISIBLE);
             newQuizz();
         } else {
+            colorImage();
             if (rightImage == selectedImage) {
                 textViewInfo.setText("Félicitation !");
             } else {

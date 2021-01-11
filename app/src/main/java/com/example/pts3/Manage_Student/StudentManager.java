@@ -114,7 +114,7 @@ public class StudentManager{
         for (Promo promo: promoList) {
             if (promo.getName().equalsIgnoreCase(grpName)) {  return promo.getStudentList(); }
             for (GroupTD groupTD: promo.getGroupsTD()) {
-                if (promo.getName().equalsIgnoreCase(grpName)) {  return promo.getStudentList(); }
+                if (groupTD.getName().equalsIgnoreCase(grpName)) {  return groupTD.getStudentList(); }
                 for (GroupTP groupTP: groupTD.getGroupsTP()) {
                     if (groupTP.getName().equalsIgnoreCase(grpName)) {  return groupTP.getStudentList(); }
                 }
