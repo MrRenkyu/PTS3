@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     static Context applicationContext;
     static StudentManager studentManager;
     boolean queryEnded = true;
-    static public ArrayList<Student> studentWithPhoto = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

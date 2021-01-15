@@ -53,7 +53,6 @@ public class ActivityQuizz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
-        studentArrayList = MainActivity.studentWithPhoto;
         nbQuizzLeft = getIntent().getIntExtra("nbQuizz",1);
 
         image1 = this.findViewById(R.id.imageView);

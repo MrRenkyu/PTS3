@@ -23,6 +23,8 @@ import com.example.pts3.Manage_Student.StudentParam;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class EtudiantsFragment extends Fragment {
 
@@ -51,7 +53,7 @@ public class EtudiantsFragment extends Fragment {
         });
 
         listStudent = MainActivity.getStudentManager().getAllStudents();
-
+        Collections.sort(listStudent);
         mRecyclerView = actualView.findViewById(R.id.recyclerView);
         mAdapter = new ItemPersonAdapter(listStudent);
 

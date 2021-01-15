@@ -6,7 +6,7 @@ import com.example.pts3.Student_fragment.ItemPersonAdapter;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class Student implements Serializable {
+public class Student implements Serializable, Comparable<Student> {
 
     private GroupTP groupTP;
 
@@ -88,5 +88,10 @@ public class Student implements Serializable {
 
     public void setGroupDetailAdaptaterHolder(GroupDetailAdaptater.GroupDetailAdaptaterHolder groupDetailAdaptaterHolder) {
         this.groupDetailAdaptaterHolder = groupDetailAdaptaterHolder;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.lastName.toLowerCase().compareTo(o.getLastName().toLowerCase());
     }
 }
